@@ -115,12 +115,11 @@ public class TankScript : MonoBehaviour
         //mousePos = Input.mousePosition - cam.WorldToScreenPoint(transform.position);
         aimRotation = context.ReadValue<Vector2>();
 
-        //Calculate the angle 
-        angleRotation = Mathf.RoundToInt(Mathf.Atan2(aimRotation.y, aimRotation.x) * Mathf.Rad2Deg);
-
+        //Calculate the angle
         if (aimRotation.magnitude > Vector2.one.magnitude / 8f)
         {
-            lastAngle = angleRotation;
+            angleRotation = Mathf.RoundToInt(Mathf.Atan2(aimRotation.y, aimRotation.x) * Mathf.Rad2Deg);
+            //lastAngle = angleRotation;
         }
 
         isAiming = SwitchContextPhase(context, isAiming);
@@ -132,7 +131,7 @@ public class TankScript : MonoBehaviour
         {
             //Rotate Canon to aim direction
             //tower.rotation = Quaternion.AngleAxis(-lastAngle + 90f, Vector3.up);
-            tower.rotation = Quaternion.RotateTowards(tower.rotation, Quaternion.Euler(0, -lastAngle + 90f, 0),
+            tower.rotation = Quaternion.RotateTowards(tower.rotation, Quaternion.Euler(0, -angleRotation + 90f, 0),
                 Time.deltaTime * rotationSpeed);
         }
     }

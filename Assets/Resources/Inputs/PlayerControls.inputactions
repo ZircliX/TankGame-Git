@@ -11,7 +11,7 @@
                     "id": "62aa7a6e-bb1e-4012-bf4d-881a2a9d4ded",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "SlowTap",
                     "initialStateCheck": false
                 },
                 {
@@ -27,7 +27,7 @@
                     "name": "Rotate",
                     "type": "Value",
                     "id": "3e099ba0-80df-4b89-99ed-fc572e62cb62",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Stick",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -38,7 +38,7 @@
                     "name": "",
                     "id": "1e1c642d-3260-4b97-b87e-fbcb6e5a948f",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
@@ -49,7 +49,7 @@
                     "name": "",
                     "id": "24edfdec-af34-41db-b5e0-2cdc84c7c86a",
                     "path": "<Gamepad>/rightTrigger",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
@@ -171,7 +171,7 @@
                     "id": "332445ce-fdc8-4642-bf97-5713cb06acd7",
                     "path": "2DVector(mode=2)",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone(min=0.125)",
                     "groups": "",
                     "action": "Rotate",
                     "isComposite": true,
@@ -223,18 +223,18 @@
                 },
                 {
                     "name": "2D Vector",
-                    "id": "96aab516-e537-4181-ae8c-a563ef252f69",
-                    "path": "2DVector(mode=2)",
+                    "id": "6e32d02d-1e56-4acb-99ca-0d3c5ddfa74f",
+                    "path": "2DVector",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(x=1000,y=1000)",
                     "groups": "",
                     "action": "Rotate",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "187adfb2-7ba3-4871-8b00-8aa3ab75a998",
+                    "name": "Up",
+                    "id": "a474dbbe-d6bd-4c61-be3e-3f168f63de49",
                     "path": "<Mouse>/delta/up",
                     "interactions": "",
                     "processors": "",
@@ -244,8 +244,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "down",
-                    "id": "5f89e4a6-feb0-431b-8616-666757205ff1",
+                    "name": "Down",
+                    "id": "8d7f5cc9-1839-41c0-beb8-6cb674a77d4c",
                     "path": "<Mouse>/delta/down",
                     "interactions": "",
                     "processors": "",
@@ -255,8 +255,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "left",
-                    "id": "2dd66435-032d-4a38-abd4-5b087d7d8800",
+                    "name": "Left",
+                    "id": "944249d0-b298-4b38-85d0-2f70d3982b97",
                     "path": "<Mouse>/delta/left",
                     "interactions": "",
                     "processors": "",
@@ -266,8 +266,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
-                    "id": "3de53ba6-ee5a-4afc-98b2-5d1ad722fc9a",
+                    "name": "Right",
+                    "id": "11d6b1f6-d0b9-4ddb-95ef-ca0c5fcbdee2",
                     "path": "<Mouse>/delta/right",
                     "interactions": "",
                     "processors": "",

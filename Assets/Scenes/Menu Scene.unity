@@ -812,7 +812,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1696954015}
   - component: {fileID: 1696954016}
-  - component: {fileID: 1696954018}
   - component: {fileID: 1696954020}
   - component: {fileID: 1696954017}
   - component: {fileID: 1696954019}
@@ -857,6 +856,10 @@ MonoBehaviour:
   moveSpeed: 50
   decelerateSpeed: 1.01
   tankRotationSpeed: 5
+  shootPosition: {fileID: 255275489}
+  bulletType: {fileID: 11400000, guid: f89cfb24244d7214484ec80809c52d34, type: 2}
+  rotationSpeed: 500
+  tower: {fileID: 393120272}
   cameraSpeedFollow: 15
   rb: {fileID: 1696954017}
   camera: {fileID: 799544360}
@@ -889,22 +892,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &1696954018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696954014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d5a27715138fb4d92b494005a4bc56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletType: {fileID: 11400000, guid: f89cfb24244d7214484ec80809c52d34, type: 2}
-  bulletShootPos: {fileID: 255275489}
-  rb: {fileID: 1696954017}
-  pivotPoint: {fileID: 393120272}
 --- !u!65 &1696954019
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -996,12 +983,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: dbbdbf31-61b5-4143-b4d2-3a7aad21279f
-    m_ActionName: 'Gameplay/Move[/Keyboard/z,/Keyboard/s,/Keyboard/q,/Keyboard/d,/DualShock4GamepadHID/leftStick/up,/DualShock4GamepadHID/leftStick/down,/DualShock4GamepadHID/leftStick/left,/DualShock4GamepadHID/leftStick/right]'
+    m_ActionName: 'Gameplay/Move[/Keyboard/w,/Keyboard/d,/Keyboard/s,/Keyboard/a,/DualShock4GamepadHID/leftStick/up,/DualShock4GamepadHID/leftStick/right,/DualShock4GamepadHID/leftStick/down,/DualShock4GamepadHID/leftStick/left]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1696954018}
-        m_TargetAssemblyTypeName: CanonScript, Assembly-CSharp
-        m_MethodName: HandleRotation
+      - m_Target: {fileID: 1696954016}
+        m_TargetAssemblyTypeName: TankScript, Assembly-CSharp
+        m_MethodName: HandleRotate
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

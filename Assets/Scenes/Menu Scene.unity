@@ -607,7 +607,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -624,14 +624,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b61ed22803f6af4582506bff94db7f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tankScriptable: {fileID: 11400000, guid: 37ce430c884ccd1469b1d86a98aa67c8, type: 2}
+  tankScriptables:
+  - {fileID: 11400000, guid: 37ce430c884ccd1469b1d86a98aa67c8, type: 2}
+  - {fileID: 11400000, guid: e4ff8d183fd5419439ce243baba5a8e9, type: 2}
   bulletScriptable: {fileID: 11400000, guid: f89cfb24244d7214484ec80809c52d34, type: 2}
-  shootPosition: {fileID: 0}
-  bulletType: {fileID: 11400000, guid: f89cfb24244d7214484ec80809c52d34, type: 2}
   camera: {fileID: 799544360}
   cameraFollowSpeed: 15
   rb: {fileID: 1696954017}
-  tank: {fileID: 0}
+  tankSwitchTimer: 1
 --- !u!54 &1696954017
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -746,6 +746,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3e099ba0-80df-4b89-99ed-fc572e62cb62
     m_ActionName: 'Gameplay/Rotate[/DualShock4GamepadHID/rightStick/up,/DualShock4GamepadHID/rightStick/down,/DualShock4GamepadHID/rightStick/left,/DualShock4GamepadHID/rightStick/right,/Mouse/delta/up,/Mouse/delta/down,/Mouse/delta/left,/Mouse/delta/right]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1696954016}
+        m_TargetAssemblyTypeName: TankScript, Assembly-CSharp
+        m_MethodName: HandleTankChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8ccbdddc-5276-4f4a-99e2-86876263346e
+    m_ActionName: 'Gameplay/ChangeTank[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

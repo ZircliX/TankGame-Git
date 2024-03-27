@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ChangeTank",
+                    "type": "Button",
+                    "id": "8ccbdddc-5276-4f4a-99e2-86876263346e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -171,7 +180,7 @@
                     "id": "332445ce-fdc8-4642-bf97-5713cb06acd7",
                     "path": "2DVector(mode=2)",
                     "interactions": "",
-                    "processors": "StickDeadzone(min=0.125)",
+                    "processors": "",
                     "groups": "",
                     "action": "Rotate",
                     "isComposite": true,
@@ -226,7 +235,7 @@
                     "id": "6e32d02d-1e56-4acb-99ca-0d3c5ddfa74f",
                     "path": "2DVector",
                     "interactions": "",
-                    "processors": "ScaleVector2(x=1000,y=1000)",
+                    "processors": "",
                     "groups": "",
                     "action": "Rotate",
                     "isComposite": true,
@@ -275,6 +284,28 @@
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "97ede6f0-f63a-48ca-bac5-255bca46b432",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeTank",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c9ff5ea-9cd2-45cc-8e96-3696abe5566a",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeTank",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

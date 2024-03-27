@@ -18,7 +18,7 @@ public class TankType : ScriptableObject
     [Header("References")]
         public GameObject tankPrefab;
         
-    public void ShootBullet(BulletType bulletScript, Transform canonShoot)
+    public void ShootBullet(BulletType bulletScript, Transform[] canonShoot)
     {
         foreach (Transform shootPoint in canonShoot)
         {
@@ -27,11 +27,11 @@ public class TankType : ScriptableObject
         
             //Spawn the bullet
             GameObject spawnedBullet = Instantiate(
-                bulletScript.bulletPrefab, shootPoint.position, Quaternion.identity);
+                bulletScript.bulletPrefab, shootPoint.position, shootPoint.rotation);
     
             //Add force to the bullet
             spawnedBullet.GetComponent<Rigidbody>().AddForce(
-                shootPoint.forward * bulletScript.bulletSpeed, ForceMode.Impulse);
+                shootDirection * bulletScript.bulletSpeed, ForceMode.Impulse);
         }
     }
 }

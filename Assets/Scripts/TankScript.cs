@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -9,7 +10,7 @@ public class TankScript : MonoBehaviour
     #region Variable Declaration
     
     [Header("Scriptable Objects")]
-        [SerializeField] internal TankType tankScriptable;
+        [SerializeField] internal TankType[] tankScriptables;
         [SerializeField] internal BulletType bulletScriptable;
     
     [Header("Movement")] 
@@ -29,13 +30,17 @@ public class TankScript : MonoBehaviour
     [Header("Camera")]
         [SerializeField] internal new Transform camera;
         [SerializeField] internal float cameraFollowSpeed;
-        private Camera cam;
 
     [Header("References")]
         [SerializeField] internal Rigidbody rb;
 
-    [Header("Tank Parts")] 
-        private GameObject tank;
+    [Header("Tank Parts")]
+        [SerializeField] private float tankSwitchTimer;
+        private bool canSwitch;
+        private TankPrefabAccess TPA;
+        private int currentTankIndex;
+        private TankType currentTank;
+        private GameObject currentTankObj;
         
     #endregion
 
@@ -43,15 +48,21 @@ public class TankScript : MonoBehaviour
 
     void Awake()
     {
-        cam = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        SetupTank();
     }
 
     private void Start()
     {
-        tank = Instantiate(tankScriptable.tankPrefab, transform.position, Quaternion.identity);
-        tank.transform.parent = transform;
+        isMoving = false;
+        canShoot = true;
+        isShooting = false;
+        isAiming = false;
+
+        canSwitch = true;
+        currentTankIndex = 0;
     }
 
     void Update()
@@ -64,33 +75,31 @@ public class TankScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.AddForce(moveDirection * tankScriptable.moveSpeed, ForceMode.Force);
+        rb.AddForce(moveDirection * currentTank.moveSpeed, ForceMode.Force);
 
-        rb.velocity /= isMoving ? 1f : tankScriptable.decelerateSpeed;
+        rb.velocity /= isMoving ? 1f : currentTank.decelerateSpeed;
     }
 
     #endregion
     
     #region Unity Events => Input System
 
-    bool SwitchContextPhase(InputAction.CallbackContext context, bool isAction)
+    void SwitchContextPhase(InputAction.CallbackContext context, Action<bool> myBool)
     {
         switch (context.phase)
         {
             case InputActionPhase.Started:
-                isAction = true;
+                myBool(true);
                 break;
 
             case InputActionPhase.Performed:
-                isAction = context.interaction is not SlowTapInteraction;
+                myBool(context.interaction is not SlowTapInteraction);
                 break;
 
             case InputActionPhase.Canceled:
-                isAction = false;
+                myBool(false);
                 break;
         }
-
-        return isAction;
     }
 
     public void HandleMove(InputAction.CallbackContext context)
@@ -99,7 +108,7 @@ public class TankScript : MonoBehaviour
 
         moveDirection = (Vector3.forward * inputDirection.x + Vector3.right * inputDirection.y).normalized;
 
-        isMoving = SwitchContextPhase(context, isMoving);
+        SwitchContextPhase(context, endValue => isMoving = endValue);
     }
 
     public void HandleRotate(InputAction.CallbackContext context)
@@ -108,17 +117,34 @@ public class TankScript : MonoBehaviour
         aimRotation = context.ReadValue<Vector2>();
 
         //Calculate the angle if Vector > dead zone
-        if (aimRotation.magnitude > Vector2.one.magnitude / 8f)
+        if (aimRotation.magnitude > Vector2.one.magnitude / 6f)
         {
             angleRotation = Mathf.RoundToInt(Mathf.Atan2(aimRotation.y, aimRotation.x) * Mathf.Rad2Deg);
         }
 
-        isAiming = SwitchContextPhase(context, isAiming);
+        SwitchContextPhase(context, endValue => isAiming = endValue);
     }
 
     public void HandleShoot(InputAction.CallbackContext context)
     {
-        isShooting = SwitchContextPhase(context, isShooting);
+        SwitchContextPhase(context, endValue => isShooting = endValue);
+    }
+
+    public void HandleTankChange(InputAction.CallbackContext context)
+    {
+        if (!canSwitch)
+            return;
+        
+        //Update the tank index
+        currentTankIndex += 1;
+        if (currentTankIndex == tankScriptables.Length)
+            currentTankIndex = 0;
+        
+        //Delete the old one
+        Destroy(currentTankObj);
+        
+        //Setup the new one
+        SetupTank();
     }
     
     #endregion
@@ -128,7 +154,7 @@ public class TankScript : MonoBehaviour
     void CameraMovement()
     {
         camera.position = Vector3.Lerp(
-            camera.position, tank.transform.GetChild(5).position, cameraFollowSpeed * Time.deltaTime);
+            camera.position, TPA.cameraPos.position, cameraFollowSpeed * Time.deltaTime);
     }
     
     void RotateTank()
@@ -139,8 +165,8 @@ public class TankScript : MonoBehaviour
             Vector3 rotationTarget = new Vector3(0f, angle, 0f);
 
             //Rotate tank to move direction
-            tank.transform.rotation = Quaternion.Slerp(tank.transform.rotation, 
-                Quaternion.Euler(rotationTarget), tankScriptable.tankRotateSpeed * Time.deltaTime);
+            TPA.tankBase.transform.rotation = Quaternion.Slerp(TPA.tankBase.transform.rotation, 
+                Quaternion.Euler(rotationTarget), currentTank.tankRotateSpeed * Time.deltaTime);
         }
     }
     
@@ -149,9 +175,9 @@ public class TankScript : MonoBehaviour
         if (isAiming)
         {
             //Rotate Canon to aim direction
-            tank.transform.GetChild(1).rotation = Quaternion.RotateTowards(
-                tank.transform.GetChild(1).rotation, Quaternion.Euler(0, -angleRotation + 90f, 0),
-                Time.deltaTime * tankScriptable.rotationSpeed);
+            TPA.tankTower.transform.rotation = Quaternion.RotateTowards(
+                TPA.tankTower.transform.rotation, Quaternion.Euler(0, -angleRotation + 90f, 0),
+                Time.deltaTime * currentTank.rotationSpeed);
         }
     }
 
@@ -159,19 +185,31 @@ public class TankScript : MonoBehaviour
     {
         if (canShoot && isShooting)
         {
-            tankScriptable.ShootBullet(bulletScriptable, tank.transform.GetChild(4));
+            currentTank.ShootBullet(bulletScriptable, TPA.shootPoints);
 
             //rb.AddForce(-shootDirection * 2f, ForceMode.Impulse);
 
-            StartCoroutine(ResetShoot(bulletScriptable.resetTime));
+            StartCoroutine(ResetBool(endValue => canShoot = endValue, bulletScriptable.resetTime));
         }
     }
 
-    private IEnumerator ResetShoot(float shootDelay)
+    private IEnumerator ResetBool(System.Action<bool> myBool, float shootDelay)
     {
-        canShoot = false;
+        myBool(false);
         yield return new WaitForSeconds(shootDelay);
-        canShoot = true;
+        myBool(true);
+    }
+    
+    void SetupTank()
+    {
+        currentTank = tankScriptables[currentTankIndex];
+        
+        currentTankObj = Instantiate(currentTank.tankPrefab, transform.position, transform.rotation);
+        currentTankObj.transform.parent = transform;
+
+        TPA = currentTankObj.GetComponent<TankPrefabAccess>();
+        
+        StartCoroutine(ResetBool(endValue => canSwitch = endValue, tankSwitchTimer));
     }
     
     #endregion

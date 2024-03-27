@@ -11,6 +11,7 @@ public class TankType : ScriptableObject
         public float moveSpeed;
         public float decelerateSpeed;
         public int tankRotateSpeed;
+        public float shootTimer;
         
     [Header("Rotation")]
         public float rotationSpeed;

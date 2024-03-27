@@ -148,6 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4292398806500930465}
   - component: {fileID: 7320816076293148894}
+  - component: {fileID: 8600060448381103873}
   m_Layer: 0
   m_Name: Tank V2
   m_TagString: Untagged
@@ -191,6 +192,27 @@ MonoBehaviour:
   - {fileID: 4155322030744047780}
   - {fileID: 8177145510476384031}
   cameraPos: {fileID: 3183980234357843778}
+--- !u!65 &8600060448381103873
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015408301972789581}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2, z: 3}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &2241656980909820669
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +313,6 @@ GameObject:
   - component: {fileID: 2305822215450575923}
   - component: {fileID: 1890733475326341633}
   - component: {fileID: 7616705664650689323}
-  - component: {fileID: 1963465804002945402}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -366,27 +387,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1963465804002945402
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3870707813711302581}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0000002, y: 1, z: 1.0000002}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6717948656109914757
 GameObject:
   m_ObjectHideFlags: 0

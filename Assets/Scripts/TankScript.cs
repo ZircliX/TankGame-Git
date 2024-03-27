@@ -17,6 +17,8 @@ public class TankScript : MonoBehaviour
         private Vector2 inputDirection;
         private Vector3 moveDirection;
         private bool isMoving;
+        [Space]
+        private float angleTank;
 
     [Header("Shoot")]
         private bool canShoot;
@@ -161,12 +163,11 @@ public class TankScript : MonoBehaviour
     {
         if (isMoving)
         {
-            float angle = Mathf.Atan2(inputDirection.x, -inputDirection.y) * Mathf.Rad2Deg;
-            Vector3 rotationTarget = new Vector3(0f, angle, 0f);
+            angleTank = Mathf.Atan2(inputDirection.x, -inputDirection.y) * Mathf.Rad2Deg;
 
             //Rotate tank to move direction
             TPA.tankBase.transform.rotation = Quaternion.Slerp(TPA.tankBase.transform.rotation, 
-                Quaternion.Euler(rotationTarget), currentTank.tankRotateSpeed * Time.deltaTime);
+                Quaternion.Euler(0, angleTank, 0), currentTank.tankRotateSpeed * Time.deltaTime);
         }
     }
     
@@ -189,7 +190,9 @@ public class TankScript : MonoBehaviour
 
             //rb.AddForce(-shootDirection * 2f, ForceMode.Impulse);
 
-            StartCoroutine(ResetBool(endValue => canShoot = endValue, bulletScriptable.resetTime));
+            StartCoroutine(ResetBool(
+                endValue => canShoot = endValue,
+                bulletScriptable.resetTime * currentTank.shootTimer));
         }
     }
 
@@ -208,6 +211,9 @@ public class TankScript : MonoBehaviour
         currentTankObj.transform.parent = transform;
 
         TPA = currentTankObj.GetComponent<TankPrefabAccess>();
+
+        TPA.tankTower.transform.rotation = Quaternion.Euler(0, -angleRotation + 90f, 0);
+        TPA.tankBase.transform.rotation = Quaternion.Euler(0, angleTank, 0);
         
         StartCoroutine(ResetBool(endValue => canSwitch = endValue, tankSwitchTimer));
     }

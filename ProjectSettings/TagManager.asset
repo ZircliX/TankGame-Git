@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Grass
-  - Rock
   - Bullet
+  - WallBounce
+  - NoWallBounce
   layers:
   - Default
   - TransparentFX

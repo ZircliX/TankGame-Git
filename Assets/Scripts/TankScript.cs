@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -196,10 +195,10 @@ public class TankScript : MonoBehaviour
         }
     }
 
-    private IEnumerator ResetBool(System.Action<bool> myBool, float shootDelay)
+    private static IEnumerator ResetBool(System.Action<bool> myBool, float timeDelay)
     {
         myBool(false);
-        yield return new WaitForSeconds(shootDelay);
+        yield return new WaitForSeconds(timeDelay);
         myBool(true);
     }
     

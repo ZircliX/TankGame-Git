@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tank 2
   m_EditorClassIdentifier: 
   tankName: Tank
-  moveSpeed: 30
+  moveSpeed: 1200
   decelerateSpeed: 1.01
   tankRotateSpeed: 10
   shootTimer: 0.5

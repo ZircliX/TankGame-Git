@@ -7,6 +7,7 @@ public class EnemyTankAccess : MonoBehaviour
     public Transform tankBase;
     public Transform tankTower;
     public Transform[] shootPoints;
+    public Transform cameraPos;
 
     public float pathUpdateDelay;
 }

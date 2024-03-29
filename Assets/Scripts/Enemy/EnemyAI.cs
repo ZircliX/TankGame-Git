@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -13,10 +10,10 @@ public class EnemyAI : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, enemyTankAccess.navMeshAgent.stoppingDistance);
+        //Gizmos.color = Color.yellow;
+        //Gizmos.DrawWireSphere(transform.position, enemyTankAccess.navMeshAgent.stoppingDistance);
         
-        Gizmos.DrawWireSphere(transform.position, enemyTankAccess.navMeshAgent.remainingDistance);
+        //Gizmos.DrawWireSphere(transform.position, enemyTankAccess.navMeshAgent.remainingDistance);
     }
 
     void Start()
@@ -32,11 +29,11 @@ public class EnemyAI : MonoBehaviour
 
             if (mustMove)
             {
-                UpdatePath();
+                Shoot();
             }
             else
             {
-                Shoot();
+                UpdatePath();
             }
             
             LookAtTarget();

@@ -31,6 +31,7 @@ public class TankScript : MonoBehaviour
     [Header("Camera")]
         [SerializeField] internal new Transform camera;
         [SerializeField] internal float cameraFollowSpeed;
+        public Vector3 cameraTargetPosition;
 
     [Header("References")]
         [SerializeField] internal Rigidbody rb;
@@ -114,7 +115,6 @@ public class TankScript : MonoBehaviour
 
     public void HandleRotate(InputAction.CallbackContext context)
     {
-        //Get Mouse position on screen
         aimRotation = context.ReadValue<Vector2>();
 
         //Calculate the angle if Vector > dead zone
@@ -155,7 +155,7 @@ public class TankScript : MonoBehaviour
     void CameraMovement()
     {
         camera.position = Vector3.Lerp(
-            camera.position, TPA.cameraPos.position, cameraFollowSpeed * Time.deltaTime);
+            camera.position, cameraTargetPosition, cameraFollowSpeed * Time.deltaTime);
     }
     
     void RotateTank()
@@ -210,6 +210,8 @@ public class TankScript : MonoBehaviour
         currentTankObj.transform.parent = transform;
 
         TPA = currentTankObj.GetComponent<TankPrefabAccess>();
+
+        cameraTargetPosition = TPA.cameraPos.position;
 
         TPA.tankTower.transform.rotation = Quaternion.Euler(0, -angleRotation + 90f, 0);
         TPA.tankBase.transform.rotation = Quaternion.Euler(0, angleTank, 0);

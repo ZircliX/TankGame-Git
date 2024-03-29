@@ -5,18 +5,25 @@ public class IDamagable : MonoBehaviour
     [Header("Properties")]
         [SerializeField] internal float maxHealth;
         private float health;
-    
-    // Start is called before the first frame update
+        
     void Start()
     {
         health = maxHealth;
     }
 
-    private void OnCollisionEnter(Collision other)
+    public void TakeDamage(float damage, GameObject tankBullet)
     {
-        if (other.gameObject.CompareTag("Bullet"))
+        health -= damage;
+
+        if (health <= 0f && gameObject.CompareTag("Player"))
         {
-            //health -= other.
+            GAME_MANAGER.Instance.UpdateGameState(GAME_MANAGER.GameState.PlayerDead);
+            gameObject.GetComponent<TankScript>().cameraTargetPosition =
+                tankBullet.GetComponent<EnemyTankAccess>().cameraPos.position;
+        }
+        else if (health <= 0f)
+        {
+            Destroy(transform.root.gameObject);
         }
     }
 }

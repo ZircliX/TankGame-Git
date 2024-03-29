@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 7320816076293148894}
   m_Layer: 0
   m_Name: Tank V2
-  m_TagString: Untagged
+  m_TagString: KillBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -385,8 +385,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0000004, y: 2, z: 1.0000002}
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Size: {x: 1.0000004, y: 3, z: 1.0000002}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &6717948656109914757
 GameObject:
   m_ObjectHideFlags: 0

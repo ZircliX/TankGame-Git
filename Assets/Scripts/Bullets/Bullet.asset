@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletName: Basic Bullet
   bulletSpeed: 25
-  bulletDamage: 50
+  bulletDamage: 25
   resetTime: 1
   numOfBounce: 2
   isDuplicable: 0

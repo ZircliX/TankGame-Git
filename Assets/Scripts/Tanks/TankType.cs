@@ -6,6 +6,7 @@ public class TankType : ScriptableObject
 {
     [Header("Infos")]
         public string tankName;
+        public LayerMask layerObject;
 
     [Header("Defaults")] 
         public float moveSpeed;
@@ -29,6 +30,8 @@ public class TankType : ScriptableObject
             //Spawn the bullet
             GameObject spawnedBullet = Instantiate(
                 bulletScript.bulletPrefab, shootPoint.position, shootPoint.rotation);
+
+            spawnedBullet.transform.parent = shootPoint.root;
     
             //Add force to the bullet
             spawnedBullet.GetComponent<Rigidbody>().AddForce(

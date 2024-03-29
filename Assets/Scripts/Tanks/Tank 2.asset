@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Tank 2
   m_EditorClassIdentifier: 
   tankName: Tank
-  moveSpeed: 1200
+  layerObject:
+    serializedVersion: 2
+    m_Bits: 8192
+  moveSpeed: 50
   decelerateSpeed: 1.01
   tankRotateSpeed: 10
   shootTimer: 0.5

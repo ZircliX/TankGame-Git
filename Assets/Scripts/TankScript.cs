@@ -10,7 +10,6 @@ public class TankScript : MonoBehaviour
     
     [Header("Scriptable Objects")]
         [SerializeField] internal TankType[] tankScriptables;
-        [SerializeField] internal BulletType bulletScriptable;
     
     [Header("Movement")] 
         private Vector2 inputDirection;
@@ -19,29 +18,28 @@ public class TankScript : MonoBehaviour
         [Space]
         private float angleTank;
 
-    [Header("Shoot")]
-        private bool canShoot;
-        private bool isShooting;
-
     [Header("Rotation")]
         private Vector2 aimRotation;
         private float angleRotation;
         private bool isAiming;
 
     [Header("Camera")]
-        [SerializeField] internal new Transform camera;
+        [SerializeField] internal new GameObject camera;
         [SerializeField] internal float cameraFollowSpeed;
-        public Vector3 cameraTargetPosition;
+        [HideInInspector] public Transform cameraTargetPosition;
 
     [Header("References")]
         [SerializeField] internal Rigidbody rb;
+        [SerializeField] internal Shoot shoot;
+        [SerializeField] internal GameObject[] tanks;
 
     [Header("Tank Parts")]
         [SerializeField] private float tankSwitchTimer;
         private bool canSwitch;
-        private TankPrefabAccess TPA;
+        
         private int currentTankIndex;
-        private TankType currentTank;
+        private TankPrefabAccess TPA;
+        private TankType currentTankData;
         private GameObject currentTankObj;
         
     #endregion
@@ -52,15 +50,13 @@ public class TankScript : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
+        
         SetupTank();
     }
 
     private void Start()
     {
         isMoving = false;
-        canShoot = true;
-        isShooting = false;
         isAiming = false;
 
         canSwitch = true;
@@ -72,14 +68,13 @@ public class TankScript : MonoBehaviour
         CameraMovement();
         RotateTank();
         RotateCanon();
-        Shoot();
     }
 
     void FixedUpdate()
     {
-        rb.AddForce(moveDirection * currentTank.moveSpeed, ForceMode.Force);
+        rb.AddForce(moveDirection * currentTankData.moveSpeed, ForceMode.Force);
 
-        rb.velocity /= isMoving ? 1f : currentTank.decelerateSpeed;
+        rb.velocity /= isMoving ? 1f : currentTankData.decelerateSpeed;
     }
 
     #endregion
@@ -128,7 +123,7 @@ public class TankScript : MonoBehaviour
 
     public void HandleShoot(InputAction.CallbackContext context)
     {
-        SwitchContextPhase(context, endValue => isShooting = endValue);
+        SwitchContextPhase(context, endValue => shoot.isShooting = endValue);
     }
 
     public void HandleTankChange(InputAction.CallbackContext context)
@@ -136,13 +131,14 @@ public class TankScript : MonoBehaviour
         if (!canSwitch)
             return;
         
+        tanks[currentTankIndex].SetActive(false);
+        
         //Update the tank index
         currentTankIndex += 1;
-        if (currentTankIndex == tankScriptables.Length)
+        if (currentTankIndex == 2)
             currentTankIndex = 0;
         
-        //Delete the old one
-        Destroy(currentTankObj);
+        tanks[currentTankIndex].SetActive(true);
         
         //Setup the new one
         SetupTank();
@@ -154,8 +150,8 @@ public class TankScript : MonoBehaviour
     
     void CameraMovement()
     {
-        camera.position = Vector3.Lerp(
-            camera.position, cameraTargetPosition, cameraFollowSpeed * Time.deltaTime);
+        camera.transform.position = Vector3.Lerp(
+            camera.transform.position, cameraTargetPosition.position, cameraFollowSpeed * Time.deltaTime);
     }
     
     void RotateTank()
@@ -166,7 +162,7 @@ public class TankScript : MonoBehaviour
 
             //Rotate tank to move direction
             TPA.tankBase.transform.rotation = Quaternion.Slerp(TPA.tankBase.transform.rotation, 
-                Quaternion.Euler(0, angleTank, 0), currentTank.tankRotateSpeed * Time.deltaTime);
+                Quaternion.Euler(0, angleTank, 0), currentTankData.tankRotateSpeed * Time.deltaTime);
         }
     }
     
@@ -177,46 +173,25 @@ public class TankScript : MonoBehaviour
             //Rotate Canon to aim direction
             TPA.tankTower.transform.rotation = Quaternion.RotateTowards(
                 TPA.tankTower.transform.rotation, Quaternion.Euler(0, -angleRotation + 90f, 0),
-                Time.deltaTime * currentTank.rotationSpeed);
+                Time.deltaTime * currentTankData.rotationSpeed);
         }
-    }
-
-    void Shoot()
-    {
-        if (canShoot && isShooting)
-        {
-            currentTank.ShootBullet(bulletScriptable, TPA.shootPoints);
-
-            //rb.AddForce(-shootDirection * 2f, ForceMode.Impulse);
-
-            StartCoroutine(ResetBool(
-                endValue => canShoot = endValue,
-                bulletScriptable.resetTime * currentTank.shootTimer));
-        }
-    }
-
-    private static IEnumerator ResetBool(Action<bool> myBool, float timeDelay)
-    {
-        myBool(false);
-        yield return new WaitForSeconds(timeDelay);
-        myBool(true);
     }
     
     void SetupTank()
     {
-        currentTank = tankScriptables[currentTankIndex];
-        
-        currentTankObj = Instantiate(currentTank.tankPrefab, transform.position, transform.rotation);
-        currentTankObj.transform.parent = transform;
+        currentTankData = tankScriptables[currentTankIndex];
+        currentTankObj = tanks[currentTankIndex];
 
         TPA = currentTankObj.GetComponent<TankPrefabAccess>();
+        cameraTargetPosition = TPA.cameraPos;
 
-        cameraTargetPosition = TPA.cameraPos.position;
+        shoot.currentTankData = currentTankData;
+        shoot.tpa = TPA;
 
-        TPA.tankTower.transform.rotation = Quaternion.Euler(0, -angleRotation + 90f, 0);
-        TPA.tankBase.transform.rotation = Quaternion.Euler(0, angleTank, 0);
+        //TPA.tankTower.transform.rotation = Quaternion.Euler(0, -angleRotation + 90f, 0);
+        //TPA.tankBase.transform.rotation = Quaternion.Euler(0, angleTank, 0);
         
-        StartCoroutine(ResetBool(endValue => canSwitch = endValue, tankSwitchTimer));
+        StartCoroutine(StaticResetBool.ResetBool(endValue => canSwitch = endValue, tankSwitchTimer));
     }
     
     #endregion

@@ -17,9 +17,8 @@ public class IDamagable : MonoBehaviour
 
         if (health <= 0f && gameObject.CompareTag("Player"))
         {
-            GAME_MANAGER.Instance.UpdateGameState(GAME_MANAGER.GameState.PlayerDead);
-            gameObject.GetComponent<TankScript>().cameraTargetPosition =
-                tankBullet.GetComponent<TankPrefabAccess>().cameraPos.position;
+            //gameObject.GetComponent<TankScript>().cameraTargetPosition =
+                //tankBullet.GetComponent<TankPrefabAccess>().cameraPos.position;
         }
         else if (health <= 0f)
         {

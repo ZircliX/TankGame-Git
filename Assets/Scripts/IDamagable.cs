@@ -11,14 +11,13 @@ public class IDamagable : MonoBehaviour
         health = maxHealth;
     }
 
-    public void TakeDamage(float damage, GameObject tankBullet)
+    public void TakeDamage(float damage, Transform enemyCamPos)
     {
         health -= damage;
 
-        if (health <= 0f && gameObject.CompareTag("Player"))
+        if (health <= 0f && gameObject.layer == 9)
         {
-            //gameObject.GetComponent<TankScript>().cameraTargetPosition =
-                //tankBullet.GetComponent<TankPrefabAccess>().cameraPos.position;
+            gameObject.GetComponent<TankScript>().cameraTargetPosition = enemyCamPos;
         }
         else if (health <= 0f)
         {

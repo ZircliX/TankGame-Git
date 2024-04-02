@@ -6,6 +6,8 @@ public class EnemyAI : MonoBehaviour
     public Transform target;
     public TankPrefabAccess tankAccess;
     private float shootingDistance;
+    
+    [SerializeField] internal Shoot shoot;
 
     private float pathUpdateDeadline;
     [SerializeField] internal float pathUpdateTime;
@@ -32,26 +34,22 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        if (target != null)
+        if (target is not null)
         {
             bool mustMove = navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance;
 
             if (mustMove)
             {
-                Shoot();
+                shoot.isShooting = true;
             }
             else
             {
+                shoot.isShooting = false;
                 UpdatePath();
             }
             
             LookAtTarget();
         }
-    }
-
-    private void Shoot()
-    {
-        //Debug.Log("Shooting !");
     }
 
     private void UpdatePath()

@@ -13,7 +13,8 @@ public class Bullets : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        isDamagable?.TakeDamage(bulletData.bulletDamage, gameObject);
+        
+        if (isDamagable is not null)
+            isDamagable.TakeDamage(bulletData.bulletDamage, transform.root.GetChild(0).GetComponent<TankPrefabAccess>().cameraPos);
     }
 }

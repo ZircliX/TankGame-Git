@@ -18,6 +18,8 @@ public class IDamagable : MonoBehaviour
         if (health <= 0f && gameObject.layer == 9)
         {
             gameObject.GetComponent<TankScript>().cameraTargetPosition = enemyCamPos;
+            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(1).gameObject.SetActive(false);
         }
         else if (health <= 0f)
         {

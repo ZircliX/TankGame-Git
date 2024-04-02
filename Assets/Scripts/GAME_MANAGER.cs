@@ -59,6 +59,6 @@ public class GAME_MANAGER : MonoBehaviour
 
     private void Start()
     {
-        UpdateGameState(GameState.Menu);
+        UpdateGameState(GameState.Started);
     }
 }

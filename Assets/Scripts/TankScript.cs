@@ -195,7 +195,7 @@ public class TankScript : MonoBehaviour
         }
     }
 
-    private static IEnumerator ResetBool(System.Action<bool> myBool, float timeDelay)
+    private static IEnumerator ResetBool(Action<bool> myBool, float timeDelay)
     {
         myBool(false);
         yield return new WaitForSeconds(timeDelay);

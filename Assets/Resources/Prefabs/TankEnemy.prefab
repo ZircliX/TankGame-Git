@@ -40,8 +40,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8431829307090606901}
-  - component: {fileID: 3146592892887950101}
   - component: {fileID: 8969086924755990815}
+  - component: {fileID: 3683703528247659219}
   - component: {fileID: 1751154383021847036}
   - component: {fileID: 6638320720113021316}
   - component: {fileID: 5457050939620439229}
@@ -70,24 +70,6 @@ Transform:
   - {fileID: 3246645378294378252}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3146592892887950101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1221081621535240474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22533d2c67c744845be2bcadbff19098, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navMeshAgent: {fileID: 6638320720113021316}
-  tankBase: {fileID: 3622711718287707456}
-  tankTower: {fileID: 3022579337727197347}
-  shootPoints:
-  - {fileID: 2763496298675504955}
-  pathUpdateDelay: 0.2
 --- !u!114 &8969086924755990815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,7 +83,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  enemyTankAccess: {fileID: 3146592892887950101}
+  tankAccess: {fileID: 3683703528247659219}
+  pathUpdateTime: 0.2
+--- !u!114 &3683703528247659219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221081621535240474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824510a101cc1a240b53a499a6473689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankBase: {fileID: 3622711718287707456}
+  tankTower: {fileID: 3022579337727197347}
+  shootPoints:
+  - {fileID: 2763496298675504955}
+  cameraPos: {fileID: 3246645378294378252}
 --- !u!114 &1751154383021847036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 5
-  m_Acceleration: 15
+  m_Acceleration: 30
   avoidancePriority: 50
   m_AngularSpeed: 200
   m_StoppingDistance: 20

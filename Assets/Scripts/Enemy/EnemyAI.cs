@@ -1,31 +1,40 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
     public Transform target;
-    public EnemyTankAccess enemyTankAccess;
+    public TankPrefabAccess tankAccess;
     private float shootingDistance;
 
     private float pathUpdateDeadline;
+    [SerializeField] internal float pathUpdateTime;
+
+    private NavMeshAgent navMeshAgent;
 
     private void OnDrawGizmosSelected()
     {
         //Gizmos.color = Color.yellow;
-        //Gizmos.DrawWireSphere(transform.position, enemyTankAccess.navMeshAgent.stoppingDistance);
+        //Gizmos.DrawWireSphere(transform.position, tankAccess.navMeshAgent.stoppingDistance);
         
-        //Gizmos.DrawWireSphere(transform.position, enemyTankAccess.navMeshAgent.remainingDistance);
+        //Gizmos.DrawWireSphere(transform.position, tankAccess.navMeshAgent.remainingDistance);
+    }
+
+    void Awake()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     void Start()
     {
-        shootingDistance = enemyTankAccess.navMeshAgent.stoppingDistance + 8;
+        shootingDistance = navMeshAgent.stoppingDistance + 8;
     }
 
     void Update()
     {
         if (target != null)
         {
-            bool mustMove = enemyTankAccess.navMeshAgent.remainingDistance > enemyTankAccess.navMeshAgent.stoppingDistance;
+            bool mustMove = navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance;
 
             if (mustMove)
             {
@@ -42,15 +51,15 @@ public class EnemyAI : MonoBehaviour
 
     private void Shoot()
     {
-        Debug.Log("Shooting !");
+        //Debug.Log("Shooting !");
     }
 
     private void UpdatePath()
     {
         if (Time.time >= pathUpdateDeadline)
         {
-            pathUpdateDeadline = Time.time + enemyTankAccess.pathUpdateDelay;
-            enemyTankAccess.navMeshAgent.SetDestination(target.position);
+            pathUpdateDeadline = Time.time + pathUpdateTime;
+            navMeshAgent.SetDestination(target.position);
         }
     }
 
@@ -59,6 +68,6 @@ public class EnemyAI : MonoBehaviour
         Vector3 lookPos = target.position - transform.position;
         lookPos.y = 0f;
         Quaternion rotation = Quaternion.LookRotation(lookPos);
-        enemyTankAccess.tankTower.rotation = Quaternion.Slerp(enemyTankAccess.tankTower.rotation, rotation, 0.2f);
+        tankAccess.tankTower.rotation = Quaternion.Slerp(tankAccess.tankTower.rotation, rotation, 0.2f);
     }
 }

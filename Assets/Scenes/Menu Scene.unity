@@ -1160,12 +1160,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &733693990 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3246645378294378252, guid: f13f4121309a82e4dbe32d1c38676d40,
-    type: 3}
-  m_PrefabInstance: {fileID: 707966356986524144}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &799544359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1727,7 +1721,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e4ff8d183fd5419439ce243baba5a8e9, type: 2}
   bulletScriptable: {fileID: 11400000, guid: f89cfb24244d7214484ec80809c52d34, type: 2}
   camera: {fileID: 799544360}
-  cameraFollowSpeed: 10
+  cameraFollowSpeed: 15
   cameraTargetPosition: {x: 0, y: 0, z: 0}
   rb: {fileID: 1696954017}
   tankSwitchTimer: 1
@@ -1879,11 +1873,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TankEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 3146592892887950101, guid: f13f4121309a82e4dbe32d1c38676d40,
-        type: 3}
-      propertyPath: cameraPos
-      value: 
-      objectReference: {fileID: 733693990}
     - target: {fileID: 8431829307090606901, guid: f13f4121309a82e4dbe32d1c38676d40,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -19,7 +19,7 @@ public class IDamagable : MonoBehaviour
         {
             GAME_MANAGER.Instance.UpdateGameState(GAME_MANAGER.GameState.PlayerDead);
             gameObject.GetComponent<TankScript>().cameraTargetPosition =
-                tankBullet.GetComponent<EnemyTankAccess>().cameraPos.position;
+                tankBullet.GetComponent<TankPrefabAccess>().cameraPos.position;
         }
         else if (health <= 0f)
         {

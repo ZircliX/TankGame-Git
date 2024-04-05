@@ -3,8 +3,8 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
     [Header("Tank")]
-        public TankType currentTankData;
-        public TankPrefabAccess tpa;
+        [HideInInspector] public TankType currentTankData;
+        [HideInInspector] public TankPrefabAccess tpa;
     
     [Header("Shoot")]
         private bool canShoot;

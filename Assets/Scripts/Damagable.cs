@@ -19,19 +19,24 @@ public class Damagable : MonoBehaviour
         switch (health)
         {
             case <= 0f when gameObject.CompareTag("Player"):
+                AudioManager.Instance.PlaySFX("Loose");
                 gameObject.GetComponent<TankScript>().cm.targetPos = enemyCamPos;
                 transform.root.gameObject.SetActive(false);
                 break;
             case <= 0f:
                 Destroy(transform.root.gameObject);
+                AudioManager.Instance.PlaySFX("Destroy");
                 break;
         }
     }
     
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(other.gameObject);
-        TakeDamage(other.gameObject.GetComponent<BulletManager>().bulletData.bulletDamage,
-            other.transform.root.GetChild(0).GetComponent<TankPrefabAccess>().cameraPos);
+        if (other.gameObject.layer == 13)
+        {
+            Destroy(other.gameObject);
+            TakeDamage(other.gameObject.GetComponent<BulletManager>().bulletData.bulletDamage,
+                other.transform.root.GetChild(0).GetComponent<TankPrefabAccess>().cameraPos);    
+        }
     }
 }

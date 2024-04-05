@@ -41,6 +41,8 @@ public class TankType : ScriptableObject
         if (tankName == "Player")
         {
             CameraManager.Shake(0.3f, 0.2f);
+            AudioManager.Instance.PlaySFX("Shoot");
+
         }
     }
 }

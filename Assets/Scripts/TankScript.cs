@@ -108,7 +108,7 @@ public class TankScript : MonoBehaviour
         aimRotation = context.ReadValue<Vector2>();
 
         //Calculate the angle if Vector > dead zone
-        if (aimRotation.magnitude > Vector2.one.magnitude / 6f)
+        if (aimRotation.sqrMagnitude > Vector2.one.sqrMagnitude / 5f)
         {
             angleRotation = Mathf.RoundToInt(Mathf.Atan2(aimRotation.y, aimRotation.x) * Mathf.Rad2Deg);
         }
@@ -168,17 +168,33 @@ public class TankScript : MonoBehaviour
     
     void SetupTank()
     {
+        Quaternion oldTowerRotation;
+        Quaternion oldBaseRotation;
+        
+        AudioManager.Instance.PlaySFX("Go");
+        
         currentTankData = tankScriptables[currentTankIndex];
         currentTankObj = tanks[currentTankIndex];
 
-        TPA = currentTankObj.GetComponent<TankPrefabAccess>();
-        cm.targetPos = TPA.cameraPos;
+        if (TPA is not null)
+        {
+            oldTowerRotation = TPA.tankTower.transform.rotation;
+            oldBaseRotation = TPA.tankBase.transform.rotation;
+
+
+            TPA = currentTankObj.GetComponent<TankPrefabAccess>();
+
+            cm.targetPos = TPA.cameraPos;
+            TPA.tankTower.transform.rotation = oldTowerRotation;
+            TPA.tankBase.transform.rotation = oldBaseRotation;
+        }
+        else
+        {
+            TPA = currentTankObj.GetComponent<TankPrefabAccess>();
+        }
 
         shoot.currentTankData = currentTankData;
         shoot.tpa = TPA;
-
-        //TPA.tankTower.transform.rotation = Quaternion.Euler(0, -angleRotation + 90f, 0);
-        //TPA.tankBase.transform.rotation = Quaternion.Euler(0, angleTank, 0);
         
         StartCoroutine(StaticResetBool.ResetBool(endValue => canSwitch = endValue, tankSwitchTimer));
     }

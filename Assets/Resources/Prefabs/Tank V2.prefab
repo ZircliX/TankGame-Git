@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824510a101cc1a240b53a499a6473689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tankBase: {fileID: 2305822215450575923}
+  tankBase: {fileID: 6183047770077132105}
   tankTower: {fileID: 4713453559113620207}
   shootPoints:
   - {fileID: 4155322030744047780}

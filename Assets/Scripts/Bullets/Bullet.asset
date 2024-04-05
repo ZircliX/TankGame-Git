@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: 
   bulletName: Basic Bullet
-  bulletSpeed: 25
+  bulletSpeed: 50
   bulletDamage: 25
-  resetTime: 1
+  resetTime: 1.5
   numOfBounce: 2
   isDuplicable: 0
   bulletPrefab: {fileID: 7406930643379973019, guid: 55e1e2af58214214fbfc599ad74e7cd1,

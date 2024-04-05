@@ -37,5 +37,10 @@ public class TankType : ScriptableObject
             spawnedBullet.GetComponent<Rigidbody>().AddForce(
                 shootDirection * bulletScript.bulletSpeed, ForceMode.Impulse);
         }
+
+        if (tankName == "Player")
+        {
+            CameraEffects.Shake(0.3f, 0.2f);
+        }
     }
 }

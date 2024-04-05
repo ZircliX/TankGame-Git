@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
-    private TankScript ts;
-
     [Header("Tank")]
         public TankType currentTankData;
         public TankPrefabAccess tpa;
@@ -26,8 +24,6 @@ public class Shoot : MonoBehaviour
         if (canShoot && isShooting)
         {
             currentTankData.ShootBullet(bulletType, tpa.shootPoints);
-
-            //rb.AddForce(-shootDirection * 2f, ForceMode.Impulse);
 
             StartCoroutine(StaticResetBool.ResetBool(
                 endValue => canShoot = endValue,

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b7217eda8ef1247bcc1df65329f06f, type: 3}
   m_Name: Tank 2
   m_EditorClassIdentifier: 
-  tankName: Tank
+  tankName: Player
   layerObject:
     serializedVersion: 2
     m_Bits: 8192

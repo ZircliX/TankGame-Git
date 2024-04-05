@@ -168,15 +168,15 @@ public class TankScript : MonoBehaviour
     
     void SetupTank()
     {
-        Quaternion oldTowerRotation;
-        Quaternion oldBaseRotation;
+        //Quaternion oldTowerRotation;
+        //Quaternion oldBaseRotation;
         
-        AudioManager.Instance.PlaySFX("Go");
+        //AudioManager.Instance.PlaySFX("Go");
         
         currentTankData = tankScriptables[currentTankIndex];
         currentTankObj = tanks[currentTankIndex];
 
-        if (TPA is not null)
+        /*if (TPA is not null)
         {
             oldTowerRotation = TPA.tankTower.transform.rotation;
             oldBaseRotation = TPA.tankBase.transform.rotation;
@@ -190,8 +190,11 @@ public class TankScript : MonoBehaviour
         }
         else
         {
-            TPA = currentTankObj.GetComponent<TankPrefabAccess>();
-        }
+        }*/
+        
+        TPA = currentTankObj.GetComponent<TankPrefabAccess>();
+        cm.targetPos = TPA.cameraPos;
+
 
         shoot.currentTankData = currentTankData;
         shoot.tpa = TPA;

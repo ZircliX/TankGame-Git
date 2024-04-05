@@ -13,6 +13,10 @@ public class TankType : ScriptableObject
         public float decelerateSpeed;
         public int tankRotateSpeed;
         public float shootTimer;
+
+    [Header("Camera Effect")] 
+        public float shakeDuration;
+        public float shakeStrenght;
         
     [Header("Rotation")]
         public float rotationSpeed;
@@ -40,7 +44,7 @@ public class TankType : ScriptableObject
 
         if (tankName == "Player")
         {
-            CameraManager.Shake(0.3f, 0.2f);
+            CameraManager.Shake(shakeDuration, shakeStrenght);
             AudioManager.Instance.PlaySFX("Shoot");
 
         }

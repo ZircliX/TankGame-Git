@@ -40,7 +40,7 @@ public class TankType : ScriptableObject
 
         if (tankName == "Player")
         {
-            CameraEffects.Shake(0.3f, 0.2f);
+            CameraManager.Shake(0.3f, 0.2f);
         }
     }
 }

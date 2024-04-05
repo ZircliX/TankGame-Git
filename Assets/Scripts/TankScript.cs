@@ -23,14 +23,10 @@ public class TankScript : MonoBehaviour
         private float angleRotation;
         private bool isAiming;
 
-    [Header("Camera")]
-        [SerializeField] internal new GameObject camera;
-        [SerializeField] internal float cameraFollowSpeed;
-        [HideInInspector] public Transform cameraTargetPosition;
-
     [Header("References")]
         [SerializeField] internal Rigidbody rb;
         [SerializeField] internal Shoot shoot;
+        [SerializeField] internal CameraManager cm;
         [SerializeField] internal GameObject[] tanks;
 
     [Header("Tank Parts")]
@@ -65,7 +61,6 @@ public class TankScript : MonoBehaviour
 
     void Update()
     {
-        CameraMovement();
         RotateTank();
         RotateCanon();
     }
@@ -147,13 +142,7 @@ public class TankScript : MonoBehaviour
     #endregion
 
     #region Self Func
-    
-    void CameraMovement()
-    {
-        camera.transform.position = Vector3.Lerp(
-            camera.transform.position, cameraTargetPosition.position, cameraFollowSpeed * Time.deltaTime);
-    }
-    
+
     void RotateTank()
     {
         if (isMoving)
@@ -183,7 +172,7 @@ public class TankScript : MonoBehaviour
         currentTankObj = tanks[currentTankIndex];
 
         TPA = currentTankObj.GetComponent<TankPrefabAccess>();
-        cameraTargetPosition = TPA.cameraPos;
+        cm.targetPos = TPA.cameraPos;
 
         shoot.currentTankData = currentTankData;
         shoot.tpa = TPA;

@@ -5,7 +5,6 @@ public class MainMenu : MonoBehaviour
     [Header("Menu Variables")] 
         public GameObject mainMenu;
         public GameObject pauseMenu;
-        public GameObject blockRaycast;
         public static bool menuActive = true;
         public GameObject[] gm;
         public GameObject[] optionGm;
@@ -84,7 +83,6 @@ public class MainMenu : MonoBehaviour
         }
 
         panel.SetActive(false);
-        blockRaycast.SetActive(false);
         menuActive = false;
     }
     

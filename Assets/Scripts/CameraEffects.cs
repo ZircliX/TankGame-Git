@@ -1,13 +1,13 @@
 using DG.Tweening;
-using System;
-using System.ComponentModel.Design;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class CameraEffects : MonoBehaviour
+public class CameraManager : MonoBehaviour
 {
+    public Transform targetPos;
+    [SerializeField] private float cameraFollowSpeed;
+    
     [SerializeField] private Transform _camera;
-    public static CameraEffects Instance;
+    public static CameraManager Instance;
     
     private void Awake() => Instance = this;
 
@@ -17,5 +17,11 @@ public class CameraEffects : MonoBehaviour
         _camera.DOComplete();
         _camera.DOShakePosition(duration, strenght);
         _camera.DOShakeRotation(duration, strenght);
+    }
+
+    private void Update()
+    {
+        transform.position = Vector3.Lerp(
+            transform.position, targetPos.position, cameraFollowSpeed * Time.deltaTime);
     }
 }

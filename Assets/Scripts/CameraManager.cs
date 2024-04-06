@@ -5,14 +5,23 @@ public class CameraManager : MonoBehaviour
 {
     public Transform targetPos;
     [SerializeField] private float cameraFollowSpeed;
-    
     [SerializeField] private Transform _camera;
-    public static CameraManager Instance;
     
-    private void Awake() => Instance = this;
-
-    public static void Shake(float duration, float strenght) => Instance.CameraShake(duration, strenght);
-    private void CameraShake(float duration, float strenght)
+    public static CameraManager Instance;
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
+    public void Shake(float duration, float strenght)
     {
         _camera.DOComplete();
         _camera.DOShakePosition(duration, strenght);

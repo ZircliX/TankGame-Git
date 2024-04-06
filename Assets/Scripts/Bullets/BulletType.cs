@@ -13,7 +13,7 @@ public class BulletType: ScriptableObject
         public float resetTime;
     
     [Header("Ability")]
-        public int numOfBounce; 
+        public int numOfBounce;
         public bool isDuplicable;
 
     [Header("Reference")] 

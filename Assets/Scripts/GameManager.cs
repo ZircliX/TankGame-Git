@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
-public class OpenPause : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public GameObject pauseMenu;
     private bool isPauseActive;
@@ -12,6 +13,14 @@ public class OpenPause : MonoBehaviour
         {
             isPauseActive = !isPauseActive;
             pauseMenu.SetActive(isPauseActive);
+        }
+    }
+    
+    public void HandleReset(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

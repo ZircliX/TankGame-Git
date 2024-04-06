@@ -40,4 +40,12 @@ public class AudioManager : MonoBehaviour
         sfxSource.clip = s.clip;
         sfxSource.Play();
     }
+
+    public void StopMusic(string name)
+    {
+        Sound s = Array.Find(musicSounds, x => x.name == name);
+        
+        musicSource.clip = s.clip;
+        musicSource.Stop();
+    }
 }

@@ -27,8 +27,7 @@ public class MainMenu : MonoBehaviour
             Audio = 3
         }
 
-    [Header("Anim Settings")] 
-        public bool animation;
+    [Header("Anim Settings")]
         private Animator animController;
 
     public void OpenOptionPanel(int index)

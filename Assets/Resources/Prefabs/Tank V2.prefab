@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4155322030744047780}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShootPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5025305337159304832}
   - component: {fileID: 7058685244056544813}
   - component: {fileID: 1666209028886606189}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4292398806500930465}
   - component: {fileID: 7320816076293148894}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tank V2
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 4713453559113620207}
   - component: {fileID: 4658664979709148566}
   - component: {fileID: 5084977543348879869}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 7490169675797379451}
   - component: {fileID: 1220189304975211762}
   - component: {fileID: 3831672772785452074}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -589,7 +589,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8177145510476384031}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShootPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -620,7 +620,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3183980234357843778}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CameraPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}

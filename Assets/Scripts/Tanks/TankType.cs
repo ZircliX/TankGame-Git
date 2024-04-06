@@ -20,9 +20,6 @@ public class TankType : ScriptableObject
         
     [Header("Rotation")]
         public float rotationSpeed;
-
-    [Header("References")]
-        public GameObject tankPrefab;
         
     public void ShootBullet(BulletType bulletScript, Transform[] canonShoot)
     {
@@ -44,7 +41,7 @@ public class TankType : ScriptableObject
 
         if (tankName == "Player")
         {
-            CameraManager.Shake(shakeDuration, shakeStrenght);
+            CameraManager.Instance.Shake(shakeDuration, shakeStrenght);
             AudioManager.Instance.PlaySFX("Shoot");
 
         }

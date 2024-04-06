@@ -20,6 +20,7 @@ public class Damagable : MonoBehaviour
         {
             case <= 0f when gameObject.CompareTag("Player"):
                 AudioManager.Instance.PlaySFX("Loose");
+                AudioManager.Instance.StopMusic("Theme");
                 gameObject.GetComponent<TankScript>().cm.targetPos = enemyCamPos;
                 transform.root.gameObject.SetActive(false);
                 break;

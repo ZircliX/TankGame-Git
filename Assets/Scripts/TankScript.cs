@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -133,8 +132,6 @@ public class TankScript : MonoBehaviour
         if (currentTankIndex == 2)
             currentTankIndex = 0;
         
-        tanks[currentTankIndex].SetActive(true);
-        
         //Setup the new one
         SetupTank();
     }
@@ -171,10 +168,9 @@ public class TankScript : MonoBehaviour
         //Quaternion oldTowerRotation;
         //Quaternion oldBaseRotation;
         
-        //AudioManager.Instance.PlaySFX("Go");
-        
         currentTankData = tankScriptables[currentTankIndex];
         currentTankObj = tanks[currentTankIndex];
+        currentTankObj.SetActive(true);
 
         /*if (TPA is not null)
         {
@@ -195,9 +191,10 @@ public class TankScript : MonoBehaviour
         TPA = currentTankObj.GetComponent<TankPrefabAccess>();
         cm.targetPos = TPA.cameraPos;
 
-
         shoot.currentTankData = currentTankData;
         shoot.tpa = TPA;
+        
+        //AudioManager.Instance.PlaySFX("Go");
         
         StartCoroutine(StaticResetBool.ResetBool(endValue => canSwitch = endValue, tankSwitchTimer));
     }

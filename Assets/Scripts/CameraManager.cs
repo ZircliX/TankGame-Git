@@ -1,4 +1,6 @@
+using System;
 using DG.Tweening;
+using Google.Protobuf.WellKnownTypes;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -7,21 +9,17 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float cameraFollowSpeed;
     [SerializeField] private Transform _camera;
     
-    public static CameraManager Instance;
-    private void Awake()
+    private static event Action<float, float> Shake;
+
+    public static void InvokeShake(float duration, float strenght)
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Shake?.Invoke(duration, strenght);
     }
-    
-    public void Shake(float duration, float strenght)
+
+    private void OnEnable() => Shake += CameraShake;
+    private void OnDisable() => Shake -= CameraShake;
+
+    private void CameraShake(float duration, float strenght)
     {
         _camera.DOComplete();
         _camera.DOShakePosition(duration, strenght);

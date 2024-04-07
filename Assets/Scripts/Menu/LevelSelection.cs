@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelSelection : MonoBehaviour
@@ -9,14 +8,19 @@ public class LevelSelection : MonoBehaviour
     
     void Start()
     {
-        int levelAt = PlayerPrefs.GetInt("levelAt", 2);
+        int levelAt = PlayerPrefs.GetInt("levelAt", 0);
 
         for (int i = 0; i < lvlButtons.Length; i++)
         {
-            if (i + 2 > levelAt)
+            if (i > levelAt)
             {
                 lvlButtons[i].interactable = false;
             }
         }
+    }
+
+    public void LoadLevel(int index)
+    {
+        SceneManager.LoadScene(index+1);
     }
 }

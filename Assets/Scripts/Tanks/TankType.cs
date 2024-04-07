@@ -41,7 +41,7 @@ public class TankType : ScriptableObject
 
         if (tankName == "Player")
         {
-            CameraManager.Instance.Shake(shakeDuration, shakeStrenght);
+            CameraManager.InvokeShake(shakeDuration, shakeStrenght);
             AudioManager.Instance.PlaySFX("Shoot");
 
         }

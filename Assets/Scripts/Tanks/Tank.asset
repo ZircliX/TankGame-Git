@@ -18,10 +18,8 @@ MonoBehaviour:
     m_Bits: 8192
   moveSpeed: 50
   decelerateSpeed: 1.01
-  tankRotateSpeed: 15
+  tankRotateSpeed: 3
   shootTimer: 0.25
   shakeDuration: 0.2
   shakeStrenght: 0.3
   rotationSpeed: 500
-  tankPrefab: {fileID: 2015408301972789581, guid: b12d9a9af2cc4fd4a99bb0e2af885660,
-    type: 3}

@@ -4,13 +4,27 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public void HandlePause(InputAction.CallbackContext context)
+    public static GameManager Instance;
+    private void Awake()
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (Instance == null)
         {
-            //isPauseActive = !isPauseActive;
-            //pauseMenu.SetActive(isPauseActive);
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
+    public GameState state = GameState.Menu;
+    public enum GameState
+    {
+        Menu,
+        LevelStarted,
+        LevelFinished,
+        PlayerDead
     }
     
     public void HandleReset(InputAction.CallbackContext context)

@@ -34,21 +34,10 @@ MonoBehaviour:
     sceneToBakingSet:
       m_Keys:
       - abe41419cf660ef4e956ab39ecb16782
-      - 99c9720ab356a0642a771bea13969a05
-      - b1c6b99bff6b90649893cc9efbeb0849
-      - 036f80ede1f0cbe409074598548a7336
-      - ceeb6ac5345e6ae4e8677e9b1a25821c
-      - bee59e641e662be4c9bec26d06ead1ec
       m_Values:
       - {fileID: 11400000, guid: ebab01c4ddc826e44a03a74b431b4777, type: 2}
-      - {fileID: 11400000, guid: bd2bb3531c3db5d4a854e12171f3c21b, type: 2}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
     bakingSets:
     - {fileID: 11400000, guid: ebab01c4ddc826e44a03a74b431b4777, type: 2}
-    - {fileID: 11400000, guid: bd2bb3531c3db5d4a854e12171f3c21b, type: 2}
     sceneBounds:
       m_Keys:
       - abe41419cf660ef4e956ab39ecb16782

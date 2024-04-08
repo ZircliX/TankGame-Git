@@ -189,7 +189,7 @@ public class TankScript : MonoBehaviour
         }*/
         
         TPA = currentTankObj.GetComponent<TankPrefabAccess>();
-        cm.targetPos = TPA.cameraPos;
+        cm.playerPos = TPA.cameraPos;
 
         shoot.currentTankData = currentTankData;
         shoot.tpa = TPA;

@@ -43,7 +43,6 @@ public class TankType : ScriptableObject
         {
             CameraManager.InvokeShake(shakeDuration, shakeStrenght);
             AudioManager.Instance.PlaySFX("Shoot");
-
         }
     }
 }

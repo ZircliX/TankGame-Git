@@ -1,11 +1,13 @@
 using System;
 using DG.Tweening;
-using Google.Protobuf.WellKnownTypes;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public Transform targetPos;
+    private Vector3 targetPos;
+    public Transform[] enemyPos;
+    public Transform playerPos;
+    
     [SerializeField] private float cameraFollowSpeed;
     [SerializeField] private Transform _camera;
     
@@ -19,16 +21,21 @@ public class CameraManager : MonoBehaviour
     private void OnEnable() => Shake += CameraShake;
     private void OnDisable() => Shake -= CameraShake;
 
-    private void CameraShake(float duration, float strenght)
+    private void CameraShake(float duration, float strength)
     {
         _camera.DOComplete();
-        _camera.DOShakePosition(duration, strenght);
-        _camera.DOShakeRotation(duration, strenght);
+        _camera.DOShakePosition(duration, strength);
+        _camera.DOShakeRotation(duration, strength);
     }
 
     private void Update()
     {
         transform.position = Vector3.Lerp(
-            transform.position, targetPos.position, cameraFollowSpeed * Time.deltaTime);
+            transform.position, GetCamPos(), cameraFollowSpeed * Time.deltaTime);
+    }
+
+    private Vector3 GetCamPos()
+    {
+        return new Vector3(0, 50, 0);
     }
 }

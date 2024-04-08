@@ -1548,12 +1548,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 762316946}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &763540687 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3183980234357843778, guid: b12d9a9af2cc4fd4a99bb0e2af885660,
-    type: 3}
-  m_PrefabInstance: {fileID: 154728243}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &770468370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1647,11 +1641,22 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1128840114}
+    - target: {fileID: 8969086924755990815, guid: f13f4121309a82e4dbe32d1c38676d40,
+        type: 3}
+      propertyPath: pathUpdateTime
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f13f4121309a82e4dbe32d1c38676d40, type: 3}
+--- !u!4 &770468371 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3246645378294378252, guid: f13f4121309a82e4dbe32d1c38676d40,
+    type: 3}
+  m_PrefabInstance: {fileID: 770468370}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &832408497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3788,7 +3793,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 80.0831
+  field of view: 80
   orthographic: 0
   orthographic size: 30
   m_Depth: 0
@@ -4703,7 +4708,7 @@ Transform:
   m_GameObject: {fileID: 2018304392}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 35, z: -20}
+  m_LocalPosition: {x: 0, y: 50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4722,7 +4727,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0603666e35935e4ab8c795c9db1c198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPos: {fileID: 763540687}
+  enemyPos:
+  - {fileID: 770468371}
+  playerPos: {fileID: 0}
   cameraFollowSpeed: 3.5
   _camera: {fileID: 1473784157}
 --- !u!1 &2019420616

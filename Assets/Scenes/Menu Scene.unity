@@ -278,7 +278,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 207975
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
@@ -327,7 +327,7 @@ PrefabInstance:
     - target: {fileID: 1939518569850068014, guid: 29e2a1de97b4cbf48bb160e0a3d7707b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1939518569850068014, guid: 29e2a1de97b4cbf48bb160e0a3d7707b,
         type: 3}
@@ -472,12 +472,12 @@ GameObject:
   - component: {fileID: 494695569}
   - component: {fileID: 494695571}
   - component: {fileID: 494695570}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &494695569
 Transform:
@@ -489,7 +489,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -3, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 75, y: 75, z: 75}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 675784954}
@@ -572,7 +572,7 @@ PrefabInstance:
     - target: {fileID: 4292398806500930465, guid: 6a17c7f731e6bb74996cccb0a0b37656,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.5
+      value: 8.8
       objectReference: {fileID: 0}
     - target: {fileID: 4292398806500930465, guid: 6a17c7f731e6bb74996cccb0a0b37656,
         type: 3}
@@ -737,7 +737,7 @@ PrefabInstance:
     - target: {fileID: 1939518569850068014, guid: 29e2a1de97b4cbf48bb160e0a3d7707b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1939518569850068014, guid: 29e2a1de97b4cbf48bb160e0a3d7707b,
         type: 3}
@@ -915,7 +915,7 @@ PrefabInstance:
     - target: {fileID: 1939518569850068014, guid: 29e2a1de97b4cbf48bb160e0a3d7707b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 1939518569850068014, guid: 29e2a1de97b4cbf48bb160e0a3d7707b,
         type: 3}
@@ -1126,7 +1126,7 @@ PrefabInstance:
     - target: {fileID: 4292398806500930465, guid: b12d9a9af2cc4fd4a99bb0e2af885660,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.5
+      value: 5.69
       objectReference: {fileID: 0}
     - target: {fileID: 4292398806500930465, guid: b12d9a9af2cc4fd4a99bb0e2af885660,
         type: 3}

@@ -4087,12 +4087,12 @@ GameObject:
   - component: {fileID: 585365383}
   - component: {fileID: 585365386}
   - component: {fileID: 585365385}
-  m_Layer: 6
+  m_Layer: 4
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &585365383
 Transform:
@@ -4131,7 +4131,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: b16ebc6458c64de48ad5b6ddeaea5f39, type: 3}
+  - {fileID: 2100000, guid: 757afa7c4aca68c4a8725a5ac7cf21df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5141,7 +5141,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 207975
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7353642941092582508}
   - component: {fileID: 5882467328715578313}
   - component: {fileID: 8522586856968040195}
-  - component: {fileID: 8764280744319816369}
+  - component: {fileID: -7664139593322457100}
   m_Layer: 0
   m_Name: Tile_Corner_Foundation_End
   m_TagString: Untagged
@@ -86,8 +86,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8764280744319816369
-BoxCollider:
+--- !u!64 &-7664139593322457100
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,7 +103,8 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: -0.000000059604645, y: -0.000000059604645, z: 0}
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3300972590941959640, guid: e9e741cabe301f24e894a13d2a24c757, type: 3}

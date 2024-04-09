@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    private Vector3 targetPos;
-    public Transform[] enemyPos;
-    public Transform playerPos;
-    
     [SerializeField] private float cameraFollowSpeed;
     [SerializeField] private Transform _camera;
     
@@ -26,16 +22,5 @@ public class CameraManager : MonoBehaviour
         _camera.DOComplete();
         _camera.DOShakePosition(duration, strength);
         _camera.DOShakeRotation(duration, strength);
-    }
-
-    private void Update()
-    {
-        transform.position = Vector3.Lerp(
-            transform.position, GetCamPos(), cameraFollowSpeed * Time.deltaTime);
-    }
-
-    private Vector3 GetCamPos()
-    {
-        return new Vector3(0, 50, 0);
     }
 }

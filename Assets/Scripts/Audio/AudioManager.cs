@@ -6,23 +6,43 @@ public class AudioManager : MonoBehaviour
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
 
-    public static AudioManager Instance;
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-             Destroy(gameObject);
-        }
-    }
-
     private void Start()
     {
+        DontDestroyOnLoad(gameObject);
         PlayMusic("Theme");
+    }
+    
+    private static event Action<string> PlayerMusic;
+    private static event Action<string> PlayerSFX;
+    private static event Action<string> StoperMusic;
+    
+    public static void InvokeMusic(string name)
+    {
+        PlayerMusic?.Invoke(name);
+    }
+
+    public static void InvokeSFX(string name)
+    {
+        PlayerSFX?.Invoke(name);
+    }
+    
+    public static void InvokeStopMusic(string name)
+    {
+        StoperMusic?.Invoke(name);
+    }
+
+    private void OnEnable()
+    {
+        PlayerMusic += PlayMusic;
+        StoperMusic += StopMusic;
+        PlayerSFX += PlaySFX;
+    }
+
+    private void OnDisable()
+    {
+        PlayerMusic -= PlayMusic;
+        StoperMusic -= StopMusic;
+        PlayerSFX -= PlaySFX;
     }
 
     public void PlayMusic(string name)

@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: 494695569}
   - component: {fileID: 494695571}
   - component: {fileID: 494695570}
-  m_Layer: 4
+  m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +516,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 757afa7c4aca68c4a8725a5ac7cf21df, type: 2}
+  - {fileID: 2100000, guid: 1b6f676fb07051a4090519877251938e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

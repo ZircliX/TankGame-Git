@@ -1,10 +1,10 @@
+using Michsky.MUIP;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class LevelSelection : MonoBehaviour
 {
-    public Button[] lvlButtons;
+    public ButtonManager[] lvlButtons;
     
     void Start()
     {
@@ -12,15 +12,18 @@ public class LevelSelection : MonoBehaviour
 
         for (int i = 0; i < lvlButtons.Length; i++)
         {
-            if (i < levelAt)
-            {
-                lvlButtons[i].interactable = true;
-            }
+            if (i >= levelAt) continue;
+            lvlButtons[i].Interactable(true);
+            lvlButtons[i].enableIcon = false;
+            lvlButtons[i].enableText = true;
+            lvlButtons[i].SetText(i.ToString());
+            lvlButtons[i].UpdateUI();
         }
     }
 
     public void LoadLevel(int index)
     {
+        GameManager.InvokeStateChange(5);
         SceneManager.LoadScene(index+1);
     }
 }

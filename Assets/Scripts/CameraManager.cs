@@ -9,13 +9,15 @@ public class CameraManager : MonoBehaviour
     
     private static event Action<float, float> Shake;
 
-    public static void InvokeShake(float duration, float strenght)
+    public static void InvokeShake(float duration, float strength)
     {
-        Shake?.Invoke(duration, strenght);
+        Shake?.Invoke(duration, strength);
     }
 
-    private void OnEnable() => Shake += CameraShake;
-    private void OnDisable() => Shake -= CameraShake;
+    private void Start()
+    {
+        Shake += CameraShake;
+    }
 
     private void CameraShake(float duration, float strength)
     {

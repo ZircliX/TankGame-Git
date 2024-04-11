@@ -18,13 +18,17 @@ public class Damagable : MonoBehaviour
         switch (health)
         {
             case <= 0f when gameObject.CompareTag("Player"):
-                AudioManager.InvokeSFX("Loose");
-                AudioManager.InvokeStopMusic("Theme");
+                AudioManager.Instance.PlaySFX("Loose");
+                AudioManager.Instance.StopMusic("Theme");
+                
                 transform.root.gameObject.SetActive(false);
+                GameManager.InvokeStateChange(10);
                 break;
             case <= 0f:
                 Destroy(transform.root.gameObject);
-                AudioManager.InvokeSFX("Destroy");
+                AudioManager.Instance.PlaySFX("Destroy");
+                
+                EnemyTankManager.InvokeEnemyKilled();
                 break;
         }
     }

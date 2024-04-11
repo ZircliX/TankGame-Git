@@ -43,9 +43,6 @@ public class TankScript : MonoBehaviour
 
     void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        
         SetupTank();
     }
 
@@ -165,29 +162,10 @@ public class TankScript : MonoBehaviour
     
     void SetupTank()
     {
-        //Quaternion oldTowerRotation;
-        //Quaternion oldBaseRotation;
-        
         currentTankData = tankScriptables[currentTankIndex];
         currentTankObj = tanks[currentTankIndex];
         currentTankObj.SetActive(true);
 
-        /*if (TPA is not null)
-        {
-            oldTowerRotation = TPA.tankTower.transform.rotation;
-            oldBaseRotation = TPA.tankBase.transform.rotation;
-
-
-            TPA = currentTankObj.GetComponent<TankPrefabAccess>();
-
-            cm.targetPos = TPA.cameraPos;
-            TPA.tankTower.transform.rotation = oldTowerRotation;
-            TPA.tankBase.transform.rotation = oldBaseRotation;
-        }
-        else
-        {
-        }*/
-        
         TPA = currentTankObj.GetComponent<TankPrefabAccess>();
 
         shoot.currentTankData = currentTankData;

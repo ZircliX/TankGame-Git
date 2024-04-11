@@ -45,8 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7d9fc81327890f4881bcfc51841f5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies: []
-  player: []
   state: 0
 --- !u!114 &3031444664877412951
 MonoBehaviour:
@@ -91,7 +89,19 @@ MonoBehaviour:
     m_ActionId: 8ccbdddc-5276-4f4a-99e2-86876263346e
     m_ActionName: 'Gameplay/ChangeTank[/Keyboard/e,/DualShock4GamepadHID/buttonWest]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6320614976980760139}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: HandlePause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 007db53c-940b-4dd6-8512-f67f69e67a52
     m_ActionName: 'UI/OpenPause[/Keyboard/escape,/DualShock4GamepadHID/start]'
   - m_PersistentCalls:

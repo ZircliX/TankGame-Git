@@ -6,46 +6,46 @@ public class AudioManager : MonoBehaviour
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
 
+    private static AudioManager _instance;
+    public static AudioManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                // Optionally, find the GameManager object in the scene, if it's not already set.
+                _instance = FindAnyObjectByType<AudioManager>();
+                if (_instance == null)
+                {
+                    // Create a new GameObject with a GameManager component if none exists.
+                    GameObject gameManager = new GameObject("GameManager");
+                    _instance = gameManager.AddComponent<AudioManager>();
+                }
+            }
+            return _instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject); // Ensure there's only one instance by destroying duplicates.
+        }
+        else
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject); // Optionally, make the GameManager persist across scenes.
+        }
+    }
+    
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
         PlayMusic("Theme");
     }
-    
-    private static event Action<string> PlayerMusic;
-    private static event Action<string> PlayerSFX;
-    private static event Action<string> StoperMusic;
-    
-    public static void InvokeMusic(string name)
-    {
-        PlayerMusic?.Invoke(name);
-    }
 
-    public static void InvokeSFX(string name)
-    {
-        PlayerSFX?.Invoke(name);
-    }
-    
-    public static void InvokeStopMusic(string name)
-    {
-        StoperMusic?.Invoke(name);
-    }
-
-    private void OnEnable()
-    {
-        PlayerMusic += PlayMusic;
-        StoperMusic += StopMusic;
-        PlayerSFX += PlaySFX;
-    }
-
-    private void OnDisable()
-    {
-        PlayerMusic -= PlayMusic;
-        StoperMusic -= StopMusic;
-        PlayerSFX -= PlaySFX;
-    }
-
-    public void PlayMusic(string name)
+    private void PlayMusic(string name)
     {
         Sound s = Array.Find(musicSounds, x => x.name == name);
 

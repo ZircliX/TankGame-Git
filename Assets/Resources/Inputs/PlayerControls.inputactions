@@ -330,13 +330,31 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "GoBack",
+                    "type": "Button",
+                    "id": "5b058c46-07d3-48e5-94e4-e61c92319630",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AnyControllerPress",
+                    "type": "Button",
+                    "id": "cfa1d3c4-a9ed-4c54-96c0-fdab3d6bc5ed",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "37d3b8f3-dcc9-4b2b-b531-fa303ed34dd2",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -357,6 +375,17 @@
                 },
                 {
                     "name": "",
+                    "id": "f439d6ea-5d9b-46dc-9aae-a38e16cf12af",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f919d8c2-f95c-4c60-bc7a-930f184a4e82",
                     "path": "<Gamepad>/rightStickPress",
                     "interactions": "",
@@ -368,12 +397,34 @@
                 },
                 {
                     "name": "",
-                    "id": "f439d6ea-5d9b-46dc-9aae-a38e16cf12af",
-                    "path": "<Keyboard>/r",
+                    "id": "77425695-b4f2-4dc3-801c-6a9cb9d3c49c",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ResetGame",
+                    "action": "GoBack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d2c864d2-db91-45c7-b77e-ffb6ae5ad554",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GoBack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b8d6d6e2-e3a8-49ad-8d1c-72dd43e4dc97",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AnyControllerPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

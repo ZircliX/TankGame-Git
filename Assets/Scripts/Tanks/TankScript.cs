@@ -119,7 +119,7 @@ public class TankScript : MonoBehaviour
 
     public void HandleTankChange(InputAction.CallbackContext context)
     {
-        if (!canSwitch)
+        if (!canSwitch || GameManager.Instance.state == GameManager.GameState.GamePause)
             return;
         
         tanks[currentTankIndex].SetActive(false);

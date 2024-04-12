@@ -10,18 +10,16 @@ public class Shoot : MonoBehaviour
         private bool canShoot;
         [HideInInspector] public bool isShooting;
         public BulletType bulletType;
-    
-    // Start is called before the first frame update
+
     void Start()
     {
         canShoot = true;
         isShooting = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (canShoot && isShooting)
+        if (canShoot && isShooting && GameManager.Instance.state != GameManager.GameState.GamePause)
         {
             currentTankData.ShootBullet(bulletType, tpa.shootPoints);
 

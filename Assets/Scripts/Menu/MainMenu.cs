@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
@@ -9,6 +11,14 @@ public class MainMenu : MonoBehaviour
     {
         Menu = 0,
         Options = 1
+    }
+
+    public GameObject defaultSelectMenu;
+
+    private void Start()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(defaultSelectMenu);
     }
 
     public void Quit()
@@ -28,6 +38,16 @@ public class MainMenu : MonoBehaviour
             panelList[(int)state].SetActive(false);
             panelList[index].SetActive(true);
             state = (MenuState)index;
+        }
+    }
+
+    public void GoBack(InputAction.CallbackContext context)
+    {
+        if (context.phase != InputActionPhase.Performed) return;
+
+        if (state == MenuState.Options)
+        {
+            OpenPanel(0);
         }
     }
 }

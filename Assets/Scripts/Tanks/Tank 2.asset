@@ -22,4 +22,4 @@ MonoBehaviour:
   shootTimer: 0.5
   shakeDuration: 0.4
   shakeStrenght: 0.5
-  rotationSpeed: 500
+  rotationSpeed: 425

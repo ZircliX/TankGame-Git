@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    [SerializeField] private float cameraFollowSpeed;
     [SerializeField] private Transform _camera;
     
     private static event Action<float, float> Shake;

@@ -1,36 +1,11 @@
 using UnityEngine;
 
+[RequireComponent(typeof(HealthManager))]
 public class Damagable : MonoBehaviour
 {
-    [Header("Properties")]
-        [SerializeField] internal float maxHealth;
-        private float health;
-        
-    void Start()
+    void TakeDamage(float damage)
     {
-        health = maxHealth;
-    }
-
-    void TakeDamage(float damage, Transform enemyCamPos)
-    {
-        health -= damage;
-
-        switch (health)
-        {
-            case <= 0f when gameObject.CompareTag("Player"):
-                AudioManager.Instance.PlaySFX("Loose");
-                AudioManager.Instance.StopMusic("Theme");
-                
-                transform.root.gameObject.SetActive(false);
-                GameManager.InvokeStateChange(10);
-                break;
-            case <= 0f:
-                Destroy(transform.root.gameObject);
-                AudioManager.Instance.PlaySFX("Destroy");
-                
-                EnemyTankManager.InvokeEnemyKilled();
-                break;
-        }
+        gameObject.GetComponent<HealthManager>().UpdateHealth(damage);
     }
     
     private void OnTriggerEnter(Collider other)
@@ -38,8 +13,7 @@ public class Damagable : MonoBehaviour
         if (other.gameObject.layer == 13) //Check Bullet
         {
             Destroy(other.gameObject);
-            TakeDamage(other.gameObject.GetComponent<BulletManager>().bulletData.bulletDamage,
-                other.transform.root.GetChild(0).GetComponent<TankPrefabAccess>().cameraPos);    
+            TakeDamage(other.gameObject.GetComponent<BulletManager>().bulletData.bulletDamage);    
         }
     }
 }

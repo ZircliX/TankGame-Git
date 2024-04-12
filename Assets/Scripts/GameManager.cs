@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     }
 
     private static GameManager _instance;
-
     public static GameManager Instance
     {
         get
@@ -80,17 +79,24 @@ public class GameManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 break;
+            
             case GameState.LevelFinished:
                 Debug.Log("Enemies killed go next !");
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                SwitchState(5); // To remove later
+                if (PlayerPrefs.GetInt("levelAt", 0) >= SceneManager.GetActiveScene().buildIndex)
+                    PlayerPrefs.SetInt("levelAt", SceneManager.GetActiveScene().buildIndex);
                 break;
+            
             case GameState.PlayerDead:
                 Debug.Log("Player dead go menu !");
                 SceneManager.LoadScene(0);
                 break;
+            
             case GameState.InMenu:
                 Debug.Log("Game is in menu !");
                 break;
+            
             case GameState.GamePause:
                 Debug.Log("Game is paused !");
                 Time.timeScale = 0f;

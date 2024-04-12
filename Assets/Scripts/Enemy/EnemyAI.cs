@@ -39,6 +39,7 @@ public class EnemyAI : MonoBehaviour
         
         shoot.isShooting = shootDistanceCollider.bounds.Contains(playerTarget.position);
         navMeshAgent.isStopped = stopDistanceCollider.bounds.Contains(playerTarget.position);
+        
         if (playerInRange)
         {
             LookAtTarget();

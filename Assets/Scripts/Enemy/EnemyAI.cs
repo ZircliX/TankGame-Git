@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using TreeEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class EnemyAI : MonoBehaviour
@@ -9,11 +12,14 @@ public class EnemyAI : MonoBehaviour
     public TankPrefabAccess tankAccess;
     [SerializeField] internal Shoot shoot;
 
+    [FormerlySerializedAs("waypoints")] [Header("WayPoints")]
+    public List<Transform> wayPoints;
+    private int currentWaypointIndex;
+    public float waypointProximityThreshold;
+    
     [Header("Detection")] 
-        [SerializeField] private float searchRadius;
-        [SerializeField] private Collider shootDistanceCollider;
-        [SerializeField] private Collider stopDistanceCollider;
-        [SerializeField] private Collider aimDistanceCollider;
+        [SerializeField] private float aimRadius, shootRadius, stopRadius;
+        [SerializeField] private string playerTag;
         private bool playerInRange;
             
     private NavMeshAgent navMeshAgent;
@@ -25,7 +31,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
-        SetRandomDestination();
+        ChooseWayPoint();
     }
 
     void Update()
@@ -35,26 +41,45 @@ public class EnemyAI : MonoBehaviour
 
     void AILogic()
     {
-        playerInRange = aimDistanceCollider.bounds.Contains(playerTarget.position);
-        
-        shoot.isShooting = shootDistanceCollider.bounds.Contains(playerTarget.position);
-        navMeshAgent.isStopped = stopDistanceCollider.bounds.Contains(playerTarget.position);
-        
+        RaycastHit hit;
+        if (Physics.SphereCast(transform.position, aimRadius, transform.forward, out hit))
+        {
+            playerInRange = hit.collider.transform.root.gameObject.CompareTag(playerTag);
+        }
+        if (Physics.SphereCast(transform.position, shootRadius, transform.forward, out hit))
+        {
+            shoot.isShooting = hit.collider.transform.root.gameObject.CompareTag(playerTag);
+        }
+        if (Physics.SphereCast(transform.position, stopRadius, transform.forward, out hit))
+        {
+            navMeshAgent.isStopped = hit.collider.transform.root.gameObject.CompareTag(playerTag);
+        }
+
         if (playerInRange)
         {
-            LookAtTarget();
-            UpdatePath();
+            LookAtTarget(playerTarget.position);
+            UpdatePath(playerTarget.position);
         }
         else
         {
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
             {
-                SetRandomDestination();
+                ChooseWayPoint();
+                LookAtTarget(wayPoints[currentWaypointIndex].position);
             }
         }
     }
+
+    private void ChooseWayPoint()
+    {
+        currentWaypointIndex = Random.Range(0, wayPoints.Count);
+        
+        Vector3 targetPosition = wayPoints[currentWaypointIndex].position;
+
+        UpdatePath(targetPosition);
+    }
     
-    private void SetRandomDestination()
+    /*private void SetRandomDestination()
     {
         // Generate a random position within the search radius
         Vector3 randomDirection = Random.insideUnitSphere * searchRadius;
@@ -67,16 +92,16 @@ public class EnemyAI : MonoBehaviour
             // Set the agent's destination to the valid position
             navMeshAgent.SetDestination(hit.position);
         }
+    }*/
+
+    private void UpdatePath(Vector3 targetPos)
+    {
+        navMeshAgent.SetDestination(targetPos);
     }
 
-    private void UpdatePath()
+    private void LookAtTarget(Vector3 lookTarget)
     {
-        navMeshAgent.SetDestination(playerTarget.position);
-    }
-
-    private void LookAtTarget()
-    {
-        Vector3 lookPos = playerTarget.position - transform.position;
+        Vector3 lookPos = lookTarget - transform.position;
         lookPos.y = 0f;
         Quaternion rotation = Quaternion.LookRotation(lookPos);
         tankAccess.tankTower.rotation = Quaternion.Slerp(tankAccess.tankTower.rotation, rotation, 0.2f);

@@ -6,10 +6,8 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject[] panelList;
-    
-    
-    public MenuState state = MenuState.Menu;
-    public enum MenuState
+    private MenuState state = MenuState.Menu;
+    private enum MenuState
     {
         Menu = 0,
         Options = 1

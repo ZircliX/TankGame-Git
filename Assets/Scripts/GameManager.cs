@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         ChangeState += SwitchState;
     }
 
-    public void SwitchState(int newState)
+    private void SwitchState(int newState)
     {
         state = (GameState)newState;
         CheckGameChange();
@@ -109,5 +109,20 @@ public class GameManager : MonoBehaviour
         if (context.phase != InputActionPhase.Performed) return;
         
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    
+    public void HandlePause(InputAction.CallbackContext context)
+    {
+        if (context.phase != InputActionPhase.Performed) return;
+        
+        switch (state)
+        {
+            case GameState.GamePause:
+                SwitchState(5);
+                break;
+            case GameState.LevelInProgress:
+                SwitchState(1);
+                break;
+        }
     }
 }

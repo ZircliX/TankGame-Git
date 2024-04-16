@@ -1,13 +1,14 @@
-using System;
+using TreeEditor;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
 
 public class EnemyAI : MonoBehaviour
 {
     public Transform playerTarget;
     public TankPrefabAccess tankAccess;
     [SerializeField] internal Shoot shoot;
+
+    private Vector3 lookPosition;
 
     [Header("Detection")] 
         [SerializeField] private float searchRadius;
@@ -42,8 +43,8 @@ public class EnemyAI : MonoBehaviour
         
         if (playerInRange)
         {
-            LookAtTarget();
-            UpdatePath();
+            navMeshAgent.SetDestination(playerTarget.position);
+            lookPosition = playerTarget.position;
         }
         else
         {
@@ -52,6 +53,8 @@ public class EnemyAI : MonoBehaviour
                 SetRandomDestination();
             }
         }
+        
+        LookAtTarget(lookPosition);
     }
     
     private void SetRandomDestination()
@@ -66,19 +69,15 @@ public class EnemyAI : MonoBehaviour
         {
             // Set the agent's destination to the valid position
             navMeshAgent.SetDestination(hit.position);
+            lookPosition = hit.position;
         }
     }
 
-    private void UpdatePath()
+    private void LookAtTarget(Vector3 targetPos)
     {
-        navMeshAgent.SetDestination(playerTarget.position);
-    }
-
-    private void LookAtTarget()
-    {
-        Vector3 lookPos = playerTarget.position - transform.position;
-        lookPos.y = 0f;
-        Quaternion rotation = Quaternion.LookRotation(lookPos);
-        tankAccess.tankTower.rotation = Quaternion.Slerp(tankAccess.tankTower.rotation, rotation, 0.2f);
+        targetPos -= transform.position;
+        targetPos.y = 0f;
+        Quaternion rotation = Quaternion.LookRotation(targetPos);
+        tankAccess.tankTower.rotation = Quaternion.Slerp(tankAccess.tankTower.rotation, rotation, 3f * Time.deltaTime);
     }
 }

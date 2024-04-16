@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Enemies killed go next !");
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 SwitchState(5); // To remove later
-                if (PlayerPrefs.GetInt("levelAt", 0) >= SceneManager.GetActiveScene().buildIndex)
+                if (PlayerPrefs.GetInt("levelAt", 1) < SceneManager.GetActiveScene().buildIndex)
                     PlayerPrefs.SetInt("levelAt", SceneManager.GetActiveScene().buildIndex);
                 break;
             
@@ -106,20 +106,17 @@ public class GameManager : MonoBehaviour
     
     public void HandleReset(InputAction.CallbackContext context)
     {
-        if (context.phase != InputActionPhase.Performed) return;
+        if (!context.performed) return;
         
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     
     public void HandlePause(InputAction.CallbackContext context)
     {
-        if (context.phase != InputActionPhase.Performed) return;
+        if (!context.performed) return;
         
         switch (state)
         {
-            case GameState.GamePause:
-                SwitchState(5);
-                break;
             case GameState.LevelInProgress:
                 SwitchState(1);
                 break;

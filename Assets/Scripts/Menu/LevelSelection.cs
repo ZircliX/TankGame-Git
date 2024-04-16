@@ -2,6 +2,7 @@ using Michsky.MUIP;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelSelection : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class LevelSelection : MonoBehaviour
     
     void Start()
     {
-        int levelAt = PlayerPrefs.GetInt("levelAt", 0);
+        int levelAt = PlayerPrefs.GetInt("levelAt", 1);
 
         for (int i = 0; i < lvlButtons.Length; i++)
         {
@@ -20,6 +21,10 @@ public class LevelSelection : MonoBehaviour
             lvlButtons[i].enableIcon = false;
             lvlButtons[i].enableText = true;
             
+            lvlButtons[i].navigationMode = Navigation.Mode.Horizontal;
+            lvlButtons[i].useUINavigation = true;
+            lvlButtons[i].AddUINavigation();
+        
             lvlButtons[i].SetText((i + 1).ToString());
             lvlButtons[i].UpdateUI();
         }
@@ -36,5 +41,13 @@ public class LevelSelection : MonoBehaviour
         if (context.phase != InputActionPhase.Performed) return;
 
         SceneManager.LoadScene(0);
+    }
+    
+    public void ResetLevelAt(InputAction.CallbackContext context)
+    {
+        if (context.phase != InputActionPhase.Performed) return;
+
+        PlayerPrefs.SetInt("levelAt", 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

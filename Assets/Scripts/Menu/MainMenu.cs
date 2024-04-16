@@ -43,7 +43,7 @@ public class MainMenu : MonoBehaviour
 
     public void GoBack(InputAction.CallbackContext context)
     {
-        if (context.phase != InputActionPhase.Performed) return;
+        if (!context.performed) return;
 
         if (state == MenuState.Options)
         {

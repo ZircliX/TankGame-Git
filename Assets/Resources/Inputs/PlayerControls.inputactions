@@ -341,7 +341,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "AnyControllerPress",
+                    "name": "ResetLevelAt",
                     "type": "Button",
                     "id": "cfa1d3c4-a9ed-4c54-96c0-fdab3d6bc5ed",
                     "expectedControlType": "Button",
@@ -420,11 +420,22 @@
                 {
                     "name": "",
                     "id": "b8d6d6e2-e3a8-49ad-8d1c-72dd43e4dc97",
-                    "path": "",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AnyControllerPress",
+                    "action": "ResetLevelAt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3af81b22-65c2-4daf-9da8-1bdd0070ca41",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetLevelAt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

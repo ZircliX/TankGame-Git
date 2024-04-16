@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 1269873535501762151}
   - component: {fileID: 1751154383021847036}
   - component: {fileID: 6638320720113021316}
+  - component: {fileID: 5457050939620439229}
   - component: {fileID: 7224708467355825610}
   - component: {fileID: 394318698888643316}
   - component: {fileID: 7728019136514201119}
@@ -162,8 +163,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1.8
-  m_Speed: 8
-  m_Acceleration: 25
+  m_Speed: 10
+  m_Acceleration: 30
   avoidancePriority: 50
   m_AngularSpeed: 200
   m_StoppingDistance: 0.25
@@ -174,6 +175,33 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
+--- !u!54 &5457050939620439229
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221081621535240474}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 3
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 84
+  m_CollisionDetection: 0
 --- !u!135 &7224708467355825610
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -193,7 +221,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 8
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &394318698888643316
 SphereCollider:

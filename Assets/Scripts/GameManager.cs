@@ -76,14 +76,16 @@ public class GameManager : MonoBehaviour
         {
             case GameState.LevelInProgress:
                 Debug.Log("Game started / resumed !");
-                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = false;
                 break;
             
             case GameState.LevelFinished:
                 Debug.Log("Enemies killed go next !");
+                
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 SwitchState(5); // To remove later
+                
                 if (PlayerPrefs.GetInt("levelAt", 1) < SceneManager.GetActiveScene().buildIndex)
                     PlayerPrefs.SetInt("levelAt", SceneManager.GetActiveScene().buildIndex);
                 break;
@@ -109,17 +111,5 @@ public class GameManager : MonoBehaviour
         if (!context.performed) return;
         
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    
-    public void HandlePause(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-        
-        switch (state)
-        {
-            case GameState.LevelInProgress:
-                SwitchState(1);
-                break;
-        }
     }
 }

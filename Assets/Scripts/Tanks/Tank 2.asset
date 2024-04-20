@@ -18,8 +18,8 @@ MonoBehaviour:
     m_Bits: 8192
   moveSpeed: 50
   decelerateSpeed: 1.01
-  tankRotateSpeed: 3
-  shootTimer: 0.5
+  tankRotateSpeed: 25
+  shootTimer: 0.75
   shakeDuration: 0.4
   shakeStrenght: 0.5
-  rotationSpeed: 425
+  rotationSpeed: 400

@@ -1,13 +1,17 @@
-using System;
+using Michsky.MUIP;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] panelList;
     [SerializeField] private GameObject[] defaultSelected;
+
+    [SerializeField] private AudioSource[] audioSources;
+    [SerializeField] private Slider[] audioSliders;
     
     private MenuState state = MenuState.Menu;
     private int lastStateIndex;
@@ -129,12 +133,12 @@ public class MenuManager : MonoBehaviour
 
         if (state == MenuState.Options)
         {
-            ExitOptions();
+            SwitchState(lastStateIndex);
         }
     }
 
-    public void ExitOptions()
+    public void UpdateSound(int index)
     {
-        SwitchState(lastStateIndex);
+        audioSources[index].volume = audioSliders[index].value;
     }
 }

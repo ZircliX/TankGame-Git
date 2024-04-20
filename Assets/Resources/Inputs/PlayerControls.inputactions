@@ -419,6 +419,17 @@
                 },
                 {
                     "name": "",
+                    "id": "c7030568-8c68-45b9-96db-85dad2416b9c",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GoBack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b8d6d6e2-e3a8-49ad-8d1c-72dd43e4dc97",
                     "path": "<Keyboard>/r",
                     "interactions": "",

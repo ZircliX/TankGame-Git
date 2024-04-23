@@ -6,7 +6,6 @@ public class TankType : ScriptableObject
 {
     [Header("Infos")]
         public string tankName;
-        public LayerMask layerObject;
 
     [Header("Defaults")] 
         public float moveSpeed;

@@ -1,4 +1,3 @@
-using Michsky.MUIP;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -21,7 +20,9 @@ public class MenuManager : MonoBehaviour
         Menu = 0,
         Options = 1,
         Pause = 2,
-        LevelSelection = 3
+        Won = 3,
+        Lost = 4,
+        LevelSelection = 10
     }
     
     private static MenuManager _instance;
@@ -60,12 +61,17 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         CheckStateChange();
+
+        audioSources[0].volume = PlayerPrefs.GetFloat("Volume0", 0.5f);
+        audioSources[1].volume = PlayerPrefs.GetFloat("Volume1", 0.5f);
+        audioSliders[0].value = PlayerPrefs.GetFloat("Volume0", 0.5f);
+        audioSliders[1].value = PlayerPrefs.GetFloat("Volume1", 0.5f);
     }
 
     public void Play()
     {
         SceneManager.LoadScene(1);
-        SwitchState(3);
+        SwitchState(10);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -107,6 +113,10 @@ public class MenuManager : MonoBehaviour
                 break;
             case MenuState.Pause:
                 break;
+            case MenuState.Lost:
+                break;
+            case MenuState.Won:
+                break;
             case MenuState.None:
                 GameManager.InvokeStateChange(5);
                 return;
@@ -140,5 +150,24 @@ public class MenuManager : MonoBehaviour
     public void UpdateSound(int index)
     {
         audioSources[index].volume = audioSliders[index].value;
+        PlayerPrefs.SetFloat("Volume" + index, audioSliders[index].value);
+        
+        //AudioManager.Instance.PlaySFX("Hover");
+    }
+    
+    public void Retry()
+    {
+        SwitchState(-1);
+        GameManager.InvokeStateChange(5);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    
+    public void Next()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 7) return;
+        
+        SwitchState(-1);
+        GameManager.InvokeStateChange(5);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

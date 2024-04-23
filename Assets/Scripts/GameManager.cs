@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.LevelInProgress:
                 Debug.Log("Game started / resumed !");
+                
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = false;
                 break;
@@ -83,8 +84,8 @@ public class GameManager : MonoBehaviour
             case GameState.LevelFinished:
                 Debug.Log("Enemies killed go next !");
                 
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-                SwitchState(5); // To remove later
+                Time.timeScale = 0f;
+                MenuManager.Instance.SwitchState(3);
                 
                 if (PlayerPrefs.GetInt("levelAt", 1) < SceneManager.GetActiveScene().buildIndex)
                     PlayerPrefs.SetInt("levelAt", SceneManager.GetActiveScene().buildIndex);
@@ -92,7 +93,8 @@ public class GameManager : MonoBehaviour
             
             case GameState.PlayerDead:
                 Debug.Log("Player dead go menu !");
-                SceneManager.LoadScene(0);
+                
+                MenuManager.Instance.SwitchState(4);
                 break;
             
             case GameState.InMenu:
@@ -101,6 +103,7 @@ public class GameManager : MonoBehaviour
             
             case GameState.GamePause:
                 Debug.Log("Game is paused !");
+                
                 Time.timeScale = 0f;
                 break;
         }

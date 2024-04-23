@@ -77,6 +77,6 @@ public class EnemyAI : MonoBehaviour
         targetPos -= transform.position;
         targetPos.y = 0f;
         Quaternion rotation = Quaternion.LookRotation(targetPos);
-        tankAccess.tankTower.rotation = Quaternion.Slerp(tankAccess.tankTower.rotation, rotation, 3f * Time.deltaTime);
+        tankAccess.tankTower.rotation = Quaternion.Slerp(tankAccess.tankTower.rotation, rotation, 10f * Time.deltaTime);
     }
 }

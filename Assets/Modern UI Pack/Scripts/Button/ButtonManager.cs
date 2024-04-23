@@ -314,7 +314,7 @@ namespace Michsky.MUIP
         public void OnPointerClick(PointerEventData eventData)
         {
             if (isInteractable == false || eventData.button != PointerEventData.InputButton.Left) { return; }
-            if (enableButtonSounds == true && useClickSound == true && soundSource != null) { soundSource.PlayOneShot(clickSound); }
+            if (enableButtonSounds == true && useClickSound == true && AudioManager.Instance.sfxSource != null) { AudioManager.Instance.sfxSource.PlayOneShot(clickSound); }
 
             // Invoke click actions
             onClick.Invoke();
@@ -351,7 +351,7 @@ namespace Michsky.MUIP
             if (isInteractable == false)
                 return;
 
-            if (enableButtonSounds == true && useHoverSound == true && soundSource != null) { soundSource.PlayOneShot(hoverSound); }
+            if (enableButtonSounds == true && useHoverSound == true && AudioManager.Instance.sfxSource != null) { AudioManager.Instance.sfxSource.PlayOneShot(hoverSound); }
             if (animationSolution == AnimationSolution.ScriptBased) { StartCoroutine("SetHighlight"); }
 
             isPointerOn = true;
@@ -372,6 +372,7 @@ namespace Michsky.MUIP
             if (isInteractable == false) { return; }
             if (animationSolution == AnimationSolution.ScriptBased) { StartCoroutine("SetHighlight"); }
             if (useUINavigation == true) { onHover.Invoke(); }
+            if (enableButtonSounds == true && useHoverSound == true && AudioManager.Instance.sfxSource != null) { AudioManager.Instance.sfxSource.PlayOneShot(hoverSound); }
         }
 
         public void OnDeselect(BaseEventData eventData)
@@ -385,6 +386,7 @@ namespace Michsky.MUIP
         {
             if (isInteractable == false) { return; }
             if (animationSolution == AnimationSolution.ScriptBased) { StartCoroutine("SetNormal"); }
+            if (enableButtonSounds == true && useClickSound == true && AudioManager.Instance.sfxSource != null) { AudioManager.Instance.sfxSource.PlayOneShot(clickSound); }
 
             onClick.Invoke();
         }

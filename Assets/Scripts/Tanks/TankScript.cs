@@ -119,6 +119,8 @@ public class TankScript : MonoBehaviour
 
     public void HandleTankChange(InputAction.CallbackContext context)
     {
+        return;
+        
         if (!canSwitch || GameManager.Instance.state == GameManager.GameState.GamePause)
             return;
         

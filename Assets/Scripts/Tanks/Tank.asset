@@ -17,8 +17,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8192
   moveSpeed: 50
-  decelerateSpeed: 1.01
-  tankRotateSpeed: 25
+  decelerateSpeed: 1.03
+  tankRotateSpeed: 3
   shootTimer: 0.5
   shakeDuration: 0.2
   shakeStrenght: 0.4

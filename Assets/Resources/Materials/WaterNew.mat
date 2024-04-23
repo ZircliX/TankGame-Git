@@ -160,7 +160,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_31F2026D: {r: 0.26226407, g: 0.9450312, b: 1, a: 1}
-    - Color_C8989E96: {r: 0.49821994, g: 0.61516553, b: 0.8490566, a: 1}
+    - Color_C8989E96: {r: 0.2785546, g: 0.4090432, b: 0.7132075, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

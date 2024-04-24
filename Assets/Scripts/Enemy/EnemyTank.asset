@@ -13,13 +13,10 @@ MonoBehaviour:
   m_Name: EnemyTank
   m_EditorClassIdentifier: 
   tankName: Enemy
-  layerObject:
-    serializedVersion: 2
-    m_Bits: 1024
   moveSpeed: 50
-  decelerateSpeed: 1.01
-  tankRotateSpeed: 15
-  shootTimer: 1
-  rotationSpeed: 500
-  tankPrefab: {fileID: 1221081621535240474, guid: f13f4121309a82e4dbe32d1c38676d40,
-    type: 3}
+  decelerateSpeed: 1.03
+  tankRotateSpeed: 3
+  shootTimer: 0.75
+  shakeDuration: 0
+  shakeStrenght: 0
+  rotationSpeed: 400

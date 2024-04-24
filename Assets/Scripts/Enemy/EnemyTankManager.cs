@@ -4,8 +4,7 @@ using UnityEngine;
 public class EnemyTankManager : MonoBehaviour
 {
     [SerializeField] private int tankNumber;
-    private int tanks;
-    
+
     private static event Action EnemyKilled;
 
     public static void InvokeEnemyKilled()
@@ -16,14 +15,13 @@ public class EnemyTankManager : MonoBehaviour
     private void Start()
     {
         EnemyKilled += RefreshEnemyNumber;
-        tanks = tankNumber;
     }
 
     private void RefreshEnemyNumber()
     {
-        tanks -= 1;
+        tankNumber -= 1;
         
-        if (tanks == 0)
+        if (tankNumber == 0)
         {
             GameManager.InvokeStateChange(6);
         }

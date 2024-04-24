@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour
             case GameState.PlayerDead:
                 Debug.Log("Player dead go menu !");
                 
+                Time.timeScale = 0f;
                 MenuManager.Instance.SwitchState(4);
                 break;
             

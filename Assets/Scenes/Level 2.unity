@@ -838,7 +838,7 @@ GameObject:
   - component: {fileID: 124832291}
   - component: {fileID: 124832290}
   - component: {fileID: 124832289}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Borders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1831,7 +1831,7 @@ GameObject:
   - component: {fileID: 225996916}
   - component: {fileID: 225996915}
   - component: {fileID: 225996914}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Borders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7279,7 +7279,7 @@ GameObject:
   - component: {fileID: 867497025}
   - component: {fileID: 867497024}
   - component: {fileID: 867497023}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Borders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12524,7 +12524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1558912521}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Env
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12784,7 +12784,7 @@ GameObject:
   - component: {fileID: 1622346766}
   - component: {fileID: 1622346765}
   - component: {fileID: 1622346764}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Borders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14617,7 +14617,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 64
-  m_UseGeometry: 1
+  m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
   m_IgnoreNavMeshAgent: 1
@@ -16346,7 +16346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1968434826}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Borders
   m_TagString: Untagged
   m_Icon: {fileID: 0}

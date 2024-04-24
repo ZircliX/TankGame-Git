@@ -108,6 +108,7 @@ public class MenuManager : MonoBehaviour
         switch (state)
         {
             case MenuState.Menu:
+                GameManager.InvokeStateChange(0);
                 break;
             case MenuState.Options:
                 break;
@@ -121,6 +122,7 @@ public class MenuManager : MonoBehaviour
                 GameManager.InvokeStateChange(5);
                 return;
             case MenuState.LevelSelection:
+                GameManager.InvokeStateChange(0);
                 return;
         }
         

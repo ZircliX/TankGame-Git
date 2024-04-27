@@ -1370,12 +1370,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 313219370}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &313219372 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1221081621535240474, guid: f13f4121309a82e4dbe32d1c38676d40,
-    type: 3}
-  m_PrefabInstance: {fileID: 313219370}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &354215115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1874,12 +1868,6 @@ PrefabInstance:
 --- !u!4 &399231492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8431829307090606901, guid: f13f4121309a82e4dbe32d1c38676d40,
-    type: 3}
-  m_PrefabInstance: {fileID: 399231491}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &399231493 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1221081621535240474, guid: f13f4121309a82e4dbe32d1c38676d40,
     type: 3}
   m_PrefabInstance: {fileID: 399231491}
   m_PrefabAsset: {fileID: 0}
@@ -3400,7 +3388,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928086183}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6339889, y: -0.0000000099798125, z: 0.000000008181488, w: 0.7733422}
+  m_LocalRotation: {x: 0.6339889, y: 0.0000000099798125, z: -0.000000008181488, w: 0.7733422}
   m_LocalPosition: {x: 24.927673, y: 56.500256, z: -15.889853}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5339,12 +5327,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1333365147}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1333365149 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1221081621535240474, guid: f13f4121309a82e4dbe32d1c38676d40,
-    type: 3}
-  m_PrefabInstance: {fileID: 1333365147}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1339809448
 GameObject:
   m_ObjectHideFlags: 0
@@ -5580,7 +5562,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1500659719}
-  - component: {fileID: 1500659720}
   m_Layer: 10
   m_Name: EnemyTankManager
   m_TagString: Untagged
@@ -5606,22 +5587,6 @@ Transform:
   - {fileID: 1333365148}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1500659720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1500659718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be75997227206f44eab0cedce57fe1c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 313219372}
-  - {fileID: 399231493}
-  - {fileID: 1333365149}
 --- !u!1 &1514520485
 GameObject:
   m_ObjectHideFlags: 0
@@ -6302,7 +6267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707151384}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6339889, y: -0.0000000099798125, z: 0.000000008181488, w: 0.7733422}
+  m_LocalRotation: {x: 0.6339889, y: 0.0000000099798125, z: -0.000000008181488, w: 0.7733422}
   m_LocalPosition: {x: 24.927673, y: 56.500256, z: -15.889853}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

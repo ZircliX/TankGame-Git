@@ -25,7 +25,7 @@ public class HealthManager : MonoBehaviour
                 break;
             case <= 0f:
                 AudioManager.Instance.PlaySFX("Destroy");
-                GameManagerEnemies.InvokeEnemyKilled();
+                GameManager.Instance.EnemyKilled();
                 
                 Destroy(transform.gameObject);
                 break;

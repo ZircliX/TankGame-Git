@@ -1,10 +1,11 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public int enemyKilledCount;
+    
     public GameState state = GameState.InMenu;
     public enum GameState
     {
@@ -46,6 +47,13 @@ public class GameManager : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(gameObject); // Optionally, make the GameManager persist across scenes.
         }
+        
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        enemyKilledCount = 0;
     }
 
     public void SwitchState(int newState)
@@ -95,6 +103,16 @@ public class GameManager : MonoBehaviour
                 
                 Time.timeScale = 0f;
                 break;
+        }
+    }
+
+    public void EnemyKilled()
+    {
+        enemyKilledCount++;
+        if (enemyKilledCount >= SceneManager.GetActiveScene().buildIndex - 1)
+        {
+            SwitchState(6);
+            enemyKilledCount = 0;
         }
     }
     

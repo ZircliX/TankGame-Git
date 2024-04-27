@@ -21,13 +21,13 @@ public class HealthManager : MonoBehaviour
                 AudioManager.Instance.StopMusic("Theme");
                 
                 transform.root.gameObject.SetActive(false);
-                GameManager.InvokeStateChange(10);
+                GameManager.Instance.SwitchState(10);
                 break;
             case <= 0f:
-                Destroy(transform.gameObject);
                 AudioManager.Instance.PlaySFX("Destroy");
+                GameManagerEnemies.InvokeEnemyKilled();
                 
-                EnemyTankManager.InvokeEnemyKilled();
+                Destroy(transform.gameObject);
                 break;
         }
     }

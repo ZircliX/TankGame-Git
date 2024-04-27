@@ -38,6 +38,9 @@ public class EnemyAI : MonoBehaviour
         playerInRange = aimDistanceCollider.bounds.Contains(playerTarget.position);
         
         shoot.isShooting = shootDistanceCollider.bounds.Contains(playerTarget.position);
+        //Animation of Shooting
+        tankAccess.animator.SetBool("isShooting", shoot.isShooting && shoot.canShoot);
+        
         navMeshAgent.isStopped = stopDistanceCollider.bounds.Contains(playerTarget.position);
         
         if (playerInRange)

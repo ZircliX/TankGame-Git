@@ -7,7 +7,7 @@ public class Shoot : MonoBehaviour
         [HideInInspector] public TankPrefabAccess tpa;
     
     [Header("Shoot")]
-        private bool canShoot;
+        public bool canShoot;
         [HideInInspector] public bool isShooting;
         public BulletType bulletType;
 

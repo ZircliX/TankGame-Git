@@ -416,6 +416,7 @@ MonoBehaviour:
   shootPoints:
   - {fileID: 2763496298675504955}
   cameraPos: {fileID: 3246645378294378252}
+  animator: {fileID: 2293202489885448105}
 --- !u!114 &4047446972320435225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,6 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTankData: {fileID: 11400000, guid: 702d9992c5b2ef84c97252df5fb3f5c8, type: 2}
   tpa: {fileID: 3683703528247659219}
+  canShoot: 0
   isShooting: 0
   bulletType: {fileID: 11400000, guid: f89cfb24244d7214484ec80809c52d34, type: 2}
 --- !u!114 &1269873535501762151
@@ -1009,6 +1011,7 @@ GameObject:
   - component: {fileID: 3022579337727197347}
   - component: {fileID: 5954603665946789507}
   - component: {fileID: 389868970727370901}
+  - component: {fileID: 2293202489885448105}
   m_Layer: 10
   m_Name: Tower
   m_TagString: Untagged
@@ -1085,6 +1088,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &2293202489885448105
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4959755895334687815}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3114543e30f104346a1d600f501b5fc4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5698416280247153724
 GameObject:
   m_ObjectHideFlags: 0

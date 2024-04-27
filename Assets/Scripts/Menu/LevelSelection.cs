@@ -32,7 +32,7 @@ public class LevelSelection : MonoBehaviour
 
     public void LoadLevel(int index)
     {
-        GameManager.InvokeStateChange(5);
+        GameManager.Instance.SwitchState(5);
         SceneManager.LoadScene(index+1);
     }
     

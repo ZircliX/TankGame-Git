@@ -62,10 +62,11 @@ public class MenuManager : MonoBehaviour
     {
         CheckStateChange();
 
-        audioSources[0].volume = PlayerPrefs.GetFloat("Volume0", 0.5f);
-        audioSources[1].volume = PlayerPrefs.GetFloat("Volume1", 0.5f);
-        audioSliders[0].value = PlayerPrefs.GetFloat("Volume0", 0.5f);
-        audioSliders[1].value = PlayerPrefs.GetFloat("Volume1", 0.5f);
+        for (int i = 0; i < 2; i++)
+        {
+            audioSources[i].volume = PlayerPrefs.GetFloat("Volume" + i, 0.5f);
+            audioSliders[i].value = PlayerPrefs.GetFloat("Volume" + i, 0.5f);
+        }
     }
 
     public void Play()
@@ -108,7 +109,7 @@ public class MenuManager : MonoBehaviour
         switch (state)
         {
             case MenuState.Menu:
-                GameManager.InvokeStateChange(0);
+                GameManager.Instance.SwitchState(0);
                 break;
             case MenuState.Options:
                 break;
@@ -119,10 +120,10 @@ public class MenuManager : MonoBehaviour
             case MenuState.Won:
                 break;
             case MenuState.None:
-                GameManager.InvokeStateChange(5);
+                GameManager.Instance.SwitchState(5);
                 return;
             case MenuState.LevelSelection:
-                GameManager.InvokeStateChange(0);
+                GameManager.Instance.SwitchState(0);
                 return;
         }
         
@@ -136,7 +137,7 @@ public class MenuManager : MonoBehaviour
         if (!context.performed || GameManager.Instance.state != GameManager.GameState.LevelInProgress) return;
         
         SwitchState(2);
-        GameManager.InvokeStateChange(1);
+        GameManager.Instance.SwitchState(1);
     }
 
     public void GoBack(InputAction.CallbackContext context)
@@ -160,16 +161,16 @@ public class MenuManager : MonoBehaviour
     public void Retry()
     {
         SwitchState(-1);
-        GameManager.InvokeStateChange(5);
+        GameManager.Instance.SwitchState(5);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     
     public void Next()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 7) return;
+        if (SceneManager.GetActiveScene().buildIndex == 4) return;
         
         SwitchState(-1);
-        GameManager.InvokeStateChange(5);
+        GameManager.Instance.SwitchState(5);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

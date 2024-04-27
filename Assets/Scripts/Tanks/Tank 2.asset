@@ -13,13 +13,10 @@ MonoBehaviour:
   m_Name: Tank 2
   m_EditorClassIdentifier: 
   tankName: Player
-  layerObject:
-    serializedVersion: 2
-    m_Bits: 8192
   moveSpeed: 50
   decelerateSpeed: 1.03
   tankRotateSpeed: 3
   shootTimer: 0.75
-  shakeDuration: 0.4
-  shakeStrenght: 0.5
+  shakeDuration: 0.25
+  shakeStrenght: 10
   rotationSpeed: 400

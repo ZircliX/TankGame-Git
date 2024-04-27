@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7058685244056544813}
   - component: {fileID: 1666209028886606189}
   m_Layer: 10
-  m_Name: Canon
+  m_Name: CanonLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,6 +191,7 @@ MonoBehaviour:
   - {fileID: 4155322030744047780}
   - {fileID: 8177145510476384031}
   cameraPos: {fileID: 3183980234357843778}
+  animator: {fileID: 2503980659882039890}
 --- !u!1 &2241656980909820669
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,6 +203,7 @@ GameObject:
   - component: {fileID: 4713453559113620207}
   - component: {fileID: 4658664979709148566}
   - component: {fileID: 5084977543348879869}
+  - component: {fileID: 2503980659882039890}
   m_Layer: 10
   m_Name: Tower
   m_TagString: Untagged
@@ -280,6 +282,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &2503980659882039890
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241656980909820669}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 84e1bee0624b37c489ff7b336f786171, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2524687292659811906
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,7 +510,7 @@ GameObject:
   - component: {fileID: 1220189304975211762}
   - component: {fileID: 3831672772785452074}
   m_Layer: 10
-  m_Name: Canon
+  m_Name: CanonRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

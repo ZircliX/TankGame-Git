@@ -36,6 +36,7 @@ public class TankScript : MonoBehaviour
         private TankPrefabAccess TPA;
         private TankType currentTankData;
         private GameObject currentTankObj;
+        private Animator animator;
         
     #endregion
 
@@ -115,11 +116,14 @@ public class TankScript : MonoBehaviour
     public void HandleShoot(InputAction.CallbackContext context)
     {
         SwitchContextPhase(context, endValue => shoot.isShooting = endValue);
+        
+        //Animation of Shooting
+        animator.SetBool("isShooting", shoot.isShooting && shoot.canShoot);
     }
 
     public void HandleTankChange(InputAction.CallbackContext context)
     {
-        return;
+        //return;
         
         if (!canSwitch || GameManager.Instance.state == GameManager.GameState.GamePause)
             return;
@@ -127,9 +131,11 @@ public class TankScript : MonoBehaviour
         tanks[currentTankIndex].SetActive(false);
         
         //Update the tank index
-        currentTankIndex += 1;
+        currentTankIndex++;
         if (currentTankIndex == 2)
+        {
             currentTankIndex = 0;
+        }
         
         //Setup the new one
         SetupTank();
@@ -167,13 +173,13 @@ public class TankScript : MonoBehaviour
         currentTankData = tankScriptables[currentTankIndex];
         currentTankObj = tanks[currentTankIndex];
         currentTankObj.SetActive(true);
-
+        
         TPA = currentTankObj.GetComponent<TankPrefabAccess>();
+
+        animator = TPA.animator;
 
         shoot.currentTankData = currentTankData;
         shoot.tpa = TPA;
-        
-        //AudioManager.Instance.PlaySFX("Go");
         
         StartCoroutine(StaticResetBool.ResetBool(endValue => canSwitch = endValue, tankSwitchTimer));
     }

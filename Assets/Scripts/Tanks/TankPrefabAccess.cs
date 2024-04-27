@@ -7,4 +7,5 @@ public class TankPrefabAccess : MonoBehaviour
     public Transform tankTower;
     public Transform[] shootPoints;
     public Transform cameraPos;
+    public Animator animator;
 }

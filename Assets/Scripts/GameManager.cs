@@ -14,14 +14,7 @@ public class GameManager : MonoBehaviour
         LevelFinished = 6,
         PlayerDead = 10
     }
-
-    private static event Action<int> ChangeState;
-
-    public static void InvokeStateChange(int stateIndex)
-    {
-        ChangeState?.Invoke(stateIndex);
-    }
-
+    
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -55,12 +48,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        ChangeState += SwitchState;
-    }
-
-    private void SwitchState(int newState)
+    public void SwitchState(int newState)
     {
         state = (GameState)newState;
         CheckGameChange();
